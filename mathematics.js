@@ -1,4 +1,4 @@
-var 3dmath = {
+var mathematics = {
     SCALAR_EPSILON: 1e-9,
 	HALF_PI: Math.PI / 2.0,
 	PI: Math.PI,
@@ -17,6 +17,7 @@ var 3dmath = {
 	uniform: function() { return Math.random(); },
 	uniform_range: function(min, max) { var diff = max - min; return min + this.uniform() * diff; },
 	uniform_unit: function() { return 2 * this.uniform() - 1; },
+	/*
 	guassian: function(mean, stddev) {
 
 		if( guassian.spare_ready )
@@ -44,6 +45,7 @@ var 3dmath = {
 			return mean + stddev * ux * mul;
 		}
 	},
+	*/
 	clamp: function(value, min, max) {
 		if( value > max )
 		{
