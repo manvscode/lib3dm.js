@@ -81,11 +81,13 @@ mat2.prototype.transpose = function( ) {
 };
 
 mat2.prototype.x_vector = function() {
-	return this.m.slice( 0, 2 );
+	var arr = this.m.slice( 0, 2 );
+	return new vec2( arr[0], arr[1] );
 };
 
 mat2.prototype.y_vector = function() {
-	return this.m.slice( 2, 4 );
+	var arr = this.m.slice( 2, 4 );
+	return new vec2( arr[0], arr[1] );
 };
 
 mat2.prototype.toString = function( ) {

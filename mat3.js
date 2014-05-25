@@ -124,15 +124,20 @@ mat3.prototype.invert = function() {
 };
 
 mat3.prototype.x_vector = function() {
-	return this.m.slice( 0, 4 );
+	var arr = this.m.slice( 0, 4 );
+	return new vec3( arr[0], arr[1], arr[2] );
 };
 
 mat3.prototype.y_vector = function() {
-	return this.m.slice( 3, 6 );
+	var arr = this.m.slice( 3, 6 );
+	return new vec3( arr[0], arr[1], arr[2] );
+};
 };
 
 mat3.prototype.z_vector = function() {
-	return this.m.slice( 6, 9 );
+	var arr = this.m.slice( 6, 9 );
+	return new vec3( arr[0], arr[1], arr[2] );
+};
 };
 
 mat3.prototype.toString = function( ) {

@@ -180,19 +180,23 @@ mat4.prototype.invert = function() {
 };
 
 mat4.prototype.x_vector = function() {
-	return this.m.slice( 0, 4 );
+	var arr = this.m.slice( 0, 4 );
+	return new vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
 mat4.prototype.y_vector = function() {
-	return this.m.slice( 4, 8 );
+	var arr = this.m.slice( 4, 8 );
+	return new vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
 mat4.prototype.z_vector = function() {
-	return this.m.slice( 8, 12 );
+	var arr = this.m.slice( 8, 12 );
+	return new vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
 mat4.prototype.w_vector = function() {
-	return this.m.slice( 12, 16 );
+	var arr = this.m.slice( 12, 16 );
+	return new vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
 mat4.prototype.toString = function( ) {
