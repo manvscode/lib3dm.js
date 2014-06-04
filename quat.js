@@ -63,7 +63,7 @@ Quat.fromMat3 = function( m ) {
 	{
 		var max_diagonal_elem = maxf( m.m[0], maxf( m.m[4], m.m[8] ) );
 
-		if( Math.abs(m.m[0] - max_diagonal_elem) < SCALAR_EPSILON )
+		if( Math.abs(m.m[0] - max_diagonal_elem) < Math.EPSILON )
 		{
 			var s = Math.sqrt( 1.0 + m.m[0] - m.m[4] - m.m[8] ) * 2.0;
 
@@ -74,7 +74,7 @@ Quat.fromMat3 = function( m ) {
 				(m.m[5] + m.m[7]) / s
 			);
 		}
-		else if( Math.abs(m.m[4] - max_diagonal_elem) < SCALAR_EPSILON )
+		else if( Math.abs(m.m[4] - max_diagonal_elem) < Math.EPSILON )
 		{
 			var s = Math.sqrt( 1.0 + m.m[4] - m.m[0] - m.m[8] ) * 2.0;
 
@@ -117,7 +117,7 @@ Quat.fromMat4 = function( m ) {
 	{
 		var max_diagonal_elem = maxf( m.m[0], maxf( m.m[5], m.m[10] ) );
 
-		if( Math.abs(m.m[0] - max_diagonal_elem) < SCALAR_EPSILON )
+		if( Math.abs(m.m[0] - max_diagonal_elem) < Math.EPSILON )
 		{
 			var s = Math.sqrt( 1.0 + m.m[0] - m.m[5] - m.m[10] ) * 2.0;
 
@@ -128,7 +128,7 @@ Quat.fromMat4 = function( m ) {
 				(m.m[6] + m.m[9]) / s
 			);
 		}
-		else if( Math.abs(m.m[5] - max_diagonal_elem) < SCALAR_EPSILON )
+		else if( Math.abs(m.m[5] - max_diagonal_elem) < Math.EPSILON )
 		{
 			var s = Math.sqrt( 1.0 + m.m[5] - m.m[0] - m.m[10] ) * 2.0;
 

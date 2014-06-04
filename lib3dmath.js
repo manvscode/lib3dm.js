@@ -62,17 +62,17 @@ else{return new Quat(x,y,z,w);}}
 Quat.prototype.magnitude=function(){return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z+this.w*this.w);};Quat.prototype.normalize=function(){var magnitude=Quat_magnitude(q);this.w/=magnitude;this.x/=magnitude;this.y/=magnitude;this.z/=magnitude;};Quat.fromAxisAngle=function(axis,angle){var q=new Quat(Math.cos(angle/2.0),axis.x*Math.sin(angle/2.0),axis.y*Math.sin(angle/2.0),axis.z*Math.sin(angle/2.0));q.normalize();return q;};Quat.fromVector=function(v){return new Quat(v.x,v.y,v.z,0.0);};Quat.fromMat3=function(m){var trace=m.m[0]+m.m[4]+m.m[8];if(trace>0.0)
 {var s=0.5/Math.sqrt(trace);return new Quat(0.25/s,(m.m[7]-m.m[5])*s,(m.m[2]-m.m[6])*s,(m.m[3]-m.m[1])*s);}
 else
-{var max_diagonal_elem=maxf(m.m[0],maxf(m.m[4],m.m[8]));if(Math.abs(m.m[0]-max_diagonal_elem)<SCALAR_EPSILON)
+{var max_diagonal_elem=maxf(m.m[0],maxf(m.m[4],m.m[8]));if(Math.abs(m.m[0]-max_diagonal_elem)<Math.EPSILON)
 {var s=Math.sqrt(1.0+m.m[0]-m.m[4]-m.m[8])*2.0;return new Quat(0.5/s,(m.m[1]+m.m[3])/s,(m.m[2]+m.m[6])/s,(m.m[5]+m.m[7])/s);}
-else if(Math.abs(m.m[4]-max_diagonal_elem)<SCALAR_EPSILON)
+else if(Math.abs(m.m[4]-max_diagonal_elem)<Math.EPSILON)
 {var s=Math.sqrt(1.0+m.m[4]-m.m[0]-m.m[8])*2.0;return new Quat((m.m[1]+m.m[3])/s,0.5/s,(m.m[5]+m.m[7])/s,(m.m[2]+m.m[6])/s);}
 else
 {var s=Math.sqrt(1.0+m.m[8]-m.m[0]-m.m[4])*2.0;return new Quat((m.m[2]+m.m[6])/s,(m.m[5]+m.m[7])/s,0.5/s,(m.m[1]+m.m[3])/s);}}};Quat.fromMat4=function(m){var trace=m.m[0]+m.m[5]+m.m[10]+1;if(trace>0.0)
 {var s=0.5/Math.sqrt(trace);return new Quat(0.25/s,(m.m[9]-m.m[6])*s,(m.m[2]-m.m[8])*s,(m.m[4]-m.m[1])*s);}
 else
-{var max_diagonal_elem=maxf(m.m[0],maxf(m.m[5],m.m[10]));if(Math.abs(m.m[0]-max_diagonal_elem)<SCALAR_EPSILON)
+{var max_diagonal_elem=maxf(m.m[0],maxf(m.m[5],m.m[10]));if(Math.abs(m.m[0]-max_diagonal_elem)<Math.EPSILON)
 {var s=Math.sqrt(1.0+m.m[0]-m.m[5]-m.m[10])*2.0;return new Quat(0.5/s,(m.m[1]+m.m[4])/s,(m.m[2]+m.m[8])/s,(m.m[6]+m.m[9])/s);}
-else if(Math.abs(m.m[5]-max_diagonal_elem)<SCALAR_EPSILON)
+else if(Math.abs(m.m[5]-max_diagonal_elem)<Math.EPSILON)
 {var s=Math.sqrt(1.0+m.m[5]-m.m[0]-m.m[10])*2.0;return new Quat((m.m[1]+m.m[4])/s,0.5/s,(m.m[6]+m.m[9])/s,(m.m[2]+m.m[8])/s);}
 else
 {var s=Math.sqrt(1.0+m.m[10]-m.m[0]-m.m[5])*2.0;return new Quat((m.m[2]+m.m[8])/s,(m.m[6]+m.m[9])/s,0.5/s,(m.m[1]+m.m[4])/s);}}};Quat.fromMatrix=function(m){if(m instanceof Mat3){return Quat.fromMat3(m);}
