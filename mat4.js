@@ -1,31 +1,45 @@
 /*
- * mat4 -- 4D affine matrix
+ * 4D Affine Matrix
  */
-function mat4( a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p ) {
-	this.m = [a, b, c, d,
-	          e, f, g, h,
-	          i, j, k, l,
-	          m, n, o, p];
+function Mat4( a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p ) {
+	if( this instanceof Mat4 ) {
+		this.m = [a, b, c, d,
+				  e, f, g, h,
+				  i, j, k, l,
+				  m, n, o, p];
+	}
+	else {
+		return new Mat4( a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p );
+	}
 }
 
-mat4.MAT4_IDENTITY = mat4( 1, 0, 0, 0,
-                           0, 1, 0, 0,
-                           0, 0, 1, 0,
-                           0, 0, 0, 1 );
-mat4.MAT4_ZERO     = mat4( 0, 0, 0, 0,
-                           0, 0, 0, 0,
-                           0, 0, 0, 0,
-                           0, 0, 0, 0 );
+Mat4.IDENTITY = (function() {
+	var i = new Mat4( 1, 0, 0, 0,
+				      0, 1, 0, 0,
+				      0, 0, 1, 0,
+				      0, 0, 0, 1 );
+	Object.freeze( i );
+	return i;
+}());
 
-mat4.prototype.identity = function( ) {
-	return this.m = MAT4_IDENITY;
+Mat4.ZERO = (function() {
+	var z = new Mat4( 0, 0, 0, 0,
+	                  0, 0, 0, 0,
+	                  0, 0, 0, 0,
+	                  0, 0, 0, 0 );
+	Object.freeze( z );
+	return z;
+}());
+
+Mat4.prototype.identity = function( ) {
+	return this.m = IDENITY;
 };
 
-mat4.prototype.zero = function( ) {
-	return this.m = MAT4_ZERO;
+Mat4.prototype.zero = function( ) {
+	return this.m = ZERO;
 };
 
-mat4.prototype.determinant = function() {
+Mat4.prototype.determinant = function() {
 	var d1 = this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]);
 	var d2 = this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]);
 	var d3 = this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
@@ -33,8 +47,8 @@ mat4.prototype.determinant = function() {
 	return this.m[0]*d1 - this.m[1]*d2 + this.m[2]*d3 - this.m[3]*d4;
 };
 
-mat4.prototype.multiply_matrix = function( m ) {
-	return new mat4(
+Mat4.prototype.multiplyMatrix = function( m ) {
+	return new Mat4(
 		this.m[ 0] * m.m[ 0]  +  this.m[ 4] * m.m[ 1]  +  this.m[ 8] * m.m[ 2]  +  this.m[12] * m.m[ 3],
 		this.m[ 1] * m.m[ 0]  +  this.m[ 5] * m.m[ 1]  +  this.m[ 9] * m.m[ 2]  +  this.m[13] * m.m[ 3],
 		this.m[ 2] * m.m[ 0]  +  this.m[ 6] * m.m[ 1]  +  this.m[10] * m.m[ 2]  +  this.m[14] * m.m[ 3],
@@ -57,8 +71,8 @@ mat4.prototype.multiply_matrix = function( m ) {
 	);
 };
 
-mat4.prototype.multiply_vector = function( v ) {
-	return new vec4(
+Mat4.prototype.multiplyVector = function( v ) {
+	return new Vec4(
 		this.m[ 0] * v.x  +  this.m[ 4] * v.y  +  this.m[ 8] * v.z  +  this.m[12] * v.w,
 		this.m[ 1] * v.x  +  this.m[ 5] * v.y  +  this.m[ 9] * v.z  +  this.m[13] * v.w,
 		this.m[ 2] * v.x  +  this.m[ 6] * v.y  +  this.m[10] * v.z  +  this.m[14] * v.w,
@@ -66,17 +80,17 @@ mat4.prototype.multiply_vector = function( v ) {
 	);
 };
 
-mat4.prototype.multiply = function( o ) {
-	if( o instanceof vec4 ) {
-		return this.multiply_vector( o );
+Mat4.prototype.multiply = function( o ) {
+	if( o instanceof Vec4 ) {
+		return this.multiplyVector( o );
 	}
 	else {
-		return this.multiply_matrix( o );
+		return this.multiplyMatrix( o );
 	}
 };
 
-mat4.prototype.cofactor = function() {
-	return new mat4(
+Mat4.prototype.cofactor = function() {
+	return new Mat4(
 		+(this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10])),
 		-(this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10])),
 		+(this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9])),
@@ -96,7 +110,7 @@ mat4.prototype.cofactor = function() {
 	);
 };
 
-mat4.prototype.transpose = function() {
+Mat4.prototype.transpose = function() {
 	var tmp1 = this.m[ 1];
 	var tmp2 = this.m[ 2];
 	var tmp3 = this.m[ 3];
@@ -119,22 +133,22 @@ mat4.prototype.transpose = function() {
 	this.m[14] = tmp6;
 };
 
-mat4.prototype.adjoint = function() {
+Mat4.prototype.adjoint = function() {
 	var cofactor_matrix = this.cofactor( );
 	cofactor_matrix.transpose( );
 	this.m = cofactor_matrix.m;
 };
 
-mat4.prototype.invert = function() {
+Mat4.prototype.invert = function() {
 	var d1 = this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]);
 	var d2 = this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]);
 	var d3 = this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
 	var d4 = this.m[4] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]) - this.m[5] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]) + this.m[6] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
 	var det = this.m[0]*d1 - this.m[1]*d2 + this.m[2]*d3 - this.m[3]*d4;
 
-	if( Math.abs(det) > mathematics.SCALAR_EPSILON ) // testing if not zero
+	if( Math.abs(det) > Math.EPSILON ) // testing if not zero
 	{
-		var cofactor_matrix = new mat4(
+		var cofactor_matrix = new Mat4(
 			+(d1),
 			-(d2),
 			+(d3),
@@ -179,27 +193,27 @@ mat4.prototype.invert = function() {
 	return false;
 };
 
-mat4.prototype.x_vector = function() {
+Mat4.prototype.x_vector = function() {
 	var arr = this.m.slice( 0, 4 );
-	return new vec4( arr[0], arr[1], arr[2], arr[3] );
+	return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
-mat4.prototype.y_vector = function() {
+Mat4.prototype.y_vector = function() {
 	var arr = this.m.slice( 4, 8 );
-	return new vec4( arr[0], arr[1], arr[2], arr[3] );
+	return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
-mat4.prototype.z_vector = function() {
+Mat4.prototype.z_vector = function() {
 	var arr = this.m.slice( 8, 12 );
-	return new vec4( arr[0], arr[1], arr[2], arr[3] );
+	return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
-mat4.prototype.w_vector = function() {
+Mat4.prototype.w_vector = function() {
 	var arr = this.m.slice( 12, 16 );
-	return new vec4( arr[0], arr[1], arr[2], arr[3] );
+	return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 };
 
-mat4.prototype.toString = function( ) {
+Mat4.prototype.toString = function( ) {
 	return "|" + this.m[0] + " " + this.m[4] + " " + this.m[ 8] + " " + this.m[12] + "|\n" +
 	       "|" + this.m[1] + " " + this.m[5] + " " + this.m[ 9] + " " + this.m[13] + "|\n" +
 	       "|" + this.m[2] + " " + this.m[6] + " " + this.m[10] + " " + this.m[14] + "|\n" +

@@ -1,30 +1,44 @@
 /*
- * mat2 -- 2D matrix
+ * 2D matrix
  */
-function mat2( a, b, c, d ) {
-	this.m = [a, b,
-	          c, d];
+function Mat2( a, b, c, d ) {
+	if( this instanceof Mat2 ) {
+		this.m = [a, b,
+				  c, d];
+	}
+	else {
+		return new Mat2( a, b, c, d );
+	}
 }
 
-mat2.MAT2_IDENTITY = mat2( 1, 0,
-                           0, 1 );
-mat2.MAT2_ZERO     = mat2( 0, 0,
-                           0, 0 );
+Mat2.IDENTITY = (function() {
+	var i = new Mat2( 1, 0,
+	                  0, 1 );
+	Object.freeze( i );
+	return i;
+}());
 
-mat2.prototype.identity = function( ) {
-	return this.m = MAT2_IDENITY;
+Mat2.ZERO = (function() {
+	var z = new Mat2( 0, 0,
+	                  0, 0 );
+	Object.freeze( z );
+	return z;
+}());
+
+Mat2.prototype.identity = function( ) {
+	return this.m = Mat2.IDENITY;
 };
 
-mat2.prototype.zero = function( ) {
-	return this.m = MAT2_ZERO;
+Mat2.prototype.zero = function( ) {
+	return this.m = Mat2.ZERO;
 };
 
-mat2.prototype.determinant = function( ) {
+Mat2.prototype.determinant = function( ) {
 	return this.m[ 0 ] * this.m[ 3 ] - this.m[ 1 ] * this.m[ 2 ];
 };
 
-mat2.prototype.multiply_matrix = function( m ) {
-	return new mat2( 
+Mat2.prototype.multiplyMatrix = function( m ) {
+	return new Mat2( 
 		this.m[ 0 ] * m.m[ 0 ] + this.m[ 2 ] * m.m[ 1 ],
 		this.m[ 1 ] * m.m[ 0 ] + this.m[ 3 ] * m.m[ 1 ],
 		this.m[ 0 ] * m.m[ 2 ] + this.m[ 2 ] * m.m[ 3 ],
@@ -32,26 +46,26 @@ mat2.prototype.multiply_matrix = function( m ) {
 	);
 };
 
-mat2.prototype.multiply_vector = function( v ) {
-	return new vec2( 
+Mat2.prototype.multiplyVector = function( v ) {
+	return new Vec2( 
 		this.m[ 0 ] * v.x + this.m[ 2 ] * v.y,
 		this.m[ 1 ] * v.x + this.m[ 3 ] * v.y
 	);
 };
 
-mat2.prototype.multiply = function( o ) {
-	if( o instanceof vec2 ) {
-		return this.multiply_vector( o );
+Mat2.prototype.multiply = function( o ) {
+	if( o instanceof Vec2 ) {
+		return this.multiplyVector( o );
 	}
 	else {
-		return this.multiply_matrix( o );
+		return this.multiplyMatrix( o );
 	}
 };
 
-mat2.prototype.invert = function( ) {
+Mat2.prototype.invert = function( ) {
 	var det = this.determinant( );
 
-	if( det > mathematics.SCALAR_EPSILON )
+	if( det > Math.EPSILON )
 	{
 		{
 			var tmp = this.m[ 0 ];
@@ -74,23 +88,23 @@ mat2.prototype.invert = function( ) {
 	return false;
 };
 
-mat2.prototype.transpose = function( ) {
+Mat2.prototype.transpose = function( ) {
 	var tmp = this.m[ 1 ];
 	this.m[ 1 ] = this.m[ 2 ];
 	this.m[ 2 ] = tmp;
 };
 
-mat2.prototype.x_vector = function() {
+Mat2.prototype.x_vector = function() {
 	var arr = this.m.slice( 0, 2 );
-	return new vec2( arr[0], arr[1] );
+	return new Vec2( arr[0], arr[1] );
 };
 
-mat2.prototype.y_vector = function() {
+Mat2.prototype.y_vector = function() {
 	var arr = this.m.slice( 2, 4 );
-	return new vec2( arr[0], arr[1] );
+	return new Vec2( arr[0], arr[1] );
 };
 
-mat2.prototype.toString = function( ) {
+Mat2.prototype.toString = function( ) {
 	return "|" + this.m[0] + " " + this.m[2] + "|\n" +
 	       "|" + this.m[1] + " " + this.m[3] + "|\n";
 };

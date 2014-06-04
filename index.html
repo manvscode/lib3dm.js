@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="author" content="Joe Marrero">
+
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="./lib3dmath.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript">
+		var a = new Mathematics.Matrix3( 1, 3, 2,
+		                                 2, 2, 1,
+		                                 3, 1, 3 );
+		var b = new Mathematics.Matrix3( 4, 6, 4,
+                                         5, 5, 6,
+		                                 6, 4, 5 );
+		var result = a.multiply( b );
+
+		console.log( result.toString() );
+
+		var v = new Mathematics.Vector3( 1, 0, 0 );
+		var m = result.multiply( v );
+		console.log( m.toString() );
+	</script>
+</body>
+</html>
