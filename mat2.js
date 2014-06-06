@@ -3,8 +3,8 @@
  */
 function Mat2( a, b, c, d ) {
 	if( this instanceof Mat2 ) {
-		this.m = [a, b,
-				  c, d];
+		this.m = [a || 0, b || 0,
+		          c || 0, d || 0];
 	}
 	else {
 		return new Mat2( a, b, c, d );

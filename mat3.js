@@ -3,9 +3,9 @@
  */
 function Mat3( a, b, c, d, e, f, g, h, i ) {
 	if( this instanceof Mat3 ) {
-		this.m = [a, b, c,
-				  d, e, f,
-				  g, h, i];
+		this.m = [a || 0, b || 0, c || 0,
+		          d || 0, e || 0, f || 0,
+		          g || 0, h || 0, i || 0];
 	}
 	else {
 		return new Mat3( a, b, c, d, e, f, g, h, i );

@@ -4,9 +4,9 @@
  */
 function Vec3( x, y, z ) {
 	if( this instanceof Vec3 ) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.x = x || 0;
+		this.y = y || 0;
+		this.z = z || 0;
 	}
 	else {
 		return new Vec3( x, y, z );

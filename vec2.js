@@ -4,8 +4,8 @@
  */
 function Vec2( x, y ) {
 	if( this instanceof Vec2 ) {
-		this.x = x;
-		this.y = y;
+		this.x = x || 0;
+		this.y = y || 0;
 	}
 	else {
 		return new Vec2( x, y );

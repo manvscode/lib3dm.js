@@ -3,10 +3,10 @@
  */
 function Quat( x, y, z, w ) {
 	if( this instanceof Quat ) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.w = w;
+		this.x = x || 0;
+		this.y = y || 0;
+		this.z = z || 0;
+		this.w = w || 0;
 	}
 	else {
 		return new Quat( x, y, z, w );
