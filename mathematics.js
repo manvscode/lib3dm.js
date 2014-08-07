@@ -10,18 +10,7 @@ var lib3dmath = (function() {
 		uniform: function() { return Math.random(); },
 		uniformRange: function(min, max) { var diff = max - min; return min + this.uniform() * diff; },
 		uniformUnit: function() { return 2 * this.uniform() - 1; },
-		clamp: function(value, min, max) {
-			if( value > max )
-			{
-				return max;
-			}
-			else if( value < min )
-			{
-				return min;
-			}
-
-			return value;
-		}
+		clamp: function(x, min, max) { return Math.min( Math.max(x, min), max ); },
 	};
 
 

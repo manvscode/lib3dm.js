@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 by Joseph A. Marrero, http://www.manvscode.com/
+/* Copyright (C) 2013-2014 by Joseph A. Marrero, http://www.manvscode.com/
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,8 +18,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * This software was based on Joe Marrero's lib3dmath library. For more information
- * you can check out lib3dmath at https://bitbucket.org/manvscode/lib3dmath
+ * This software is a port of Joe Marrero's lib3dmath library. Joe ported this 
+ * over for WebGL applications that need a decoupled math library for 3D graphics.
+ *
+ * The original C code is maintained at http://bitbucket.org/manvscode/lib3dmath
+ *
+ * The Javascript port is maintained at http://bitbucket.org/manvscode/lib3dmath.js
  */
 "use strict";
 var lib3dmath = (function() {
@@ -33,18 +37,7 @@ var lib3dmath = (function() {
 		uniform: function() { return Math.random(); },
 		uniformRange: function(min, max) { var diff = max - min; return min + this.uniform() * diff; },
 		uniformUnit: function() { return 2 * this.uniform() - 1; },
-		clamp: function(value, min, max) {
-			if( value > max )
-			{
-				return max;
-			}
-			else if( value < min )
-			{
-				return min;
-			}
-
-			return value;
-		}
+		clamp: function(x, min, max) { return Math.min( Math.max(x, min), max ); },
 	};
 
 
