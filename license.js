@@ -18,6 +18,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * This software was based on Joe Marrero's lib3dmath library.
+ * This software was based on Joe Marrero's lib3dmath library. For more information
+ * you can check out lib3dmath at https://bitbucket.org/manvscode/lib3dmath
  */
-"use strict";

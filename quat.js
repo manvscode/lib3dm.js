@@ -1,32 +1,20 @@
 /*
  * Quaternion
  */
-function Quat( x, y, z, w ) {
-	if( this instanceof Quat ) {
+lib3dmath.Quat = function( x, y, z, w ) {
+	if( this instanceof lib3dmath.Quat) {
 		this.x = x || 0;
 		this.y = y || 0;
 		this.z = z || 0;
 		this.w = w || 0;
 	}
 	else {
-		return new Quat( x, y, z, w );
+		return new lib3dmath.Quat( x, y, z, w );
 	}
-}
-
-Quat.prototype.magnitude = function() {
-    return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w );
 };
 
-Quat.prototype.normalize = function() {
-	var magnitude = Quat_magnitude( q );
-	this.w /= magnitude;
-	this.x /= magnitude;
-	this.y /= magnitude;
-	this.z /= magnitude;
-};
-
-Quat.fromAxisAngle = function( axis, angle ) {
-	var q = new Quat(
+lib3dmath.Quat.fromAxisAngle = function( axis, angle ) {
+	var q = new lib3dmath.Quat(
 		Math.cos( angle / 2.0 ),
 		axis.x * Math.sin( angle / 2.0 ),
 		axis.y * Math.sin( angle / 2.0 ),
@@ -36,8 +24,8 @@ Quat.fromAxisAngle = function( axis, angle ) {
 	return q;
 };
 
-Quat.fromVector = function( v ) {
-	return new Quat(
+lib3dmath.Quat.fromVector = function( v ) {
+	return new lib3dmath.Quat(
 		v.x,
 		v.y,
 		v.z,
@@ -45,14 +33,23 @@ Quat.fromVector = function( v ) {
 	);
 };
 
-Quat.fromMat3 = function( m ) {
+lib3dmath.Quat.fromMatrix = function( m ) {
+	if( m instanceof lib3dmath.Mat3) {
+		return lib3dmath.Quat.fromMat3( m );
+	}
+	else {
+		return lib3dmath.Quat.fromMat4( m );
+	}
+};
+
+lib3dmath.Quat.fromMat3 = function( m ) {
 	var trace = m.m[0] + m.m[4] + m.m[8]; /* add the diagonal values */
 
 	if( trace > 0.0 )
 	{
 		var s = 0.5 / Math.sqrt( trace );
 
-		return new Quat(
+		return new lib3dmath.Quat(
 			0.25 / s,
 			(m.m[7] - m.m[5]) * s,
 			(m.m[2] - m.m[6]) * s,
@@ -67,7 +64,7 @@ Quat.fromMat3 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[0] - m.m[4] - m.m[8] ) * 2.0;
 
-			return new Quat(
+			return new lib3dmath.Quat(
 				0.5 / s,
 				(m.m[1] + m.m[3]) / s,
 				(m.m[2] + m.m[6]) / s,
@@ -78,7 +75,7 @@ Quat.fromMat3 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[4] - m.m[0] - m.m[8] ) * 2.0;
 
-			return new Quat(
+			return new lib3dmath.Quat(
 				(m.m[1] + m.m[3]) / s,
 				0.5 / s,
 				(m.m[5] + m.m[7]) / s,
@@ -89,7 +86,7 @@ Quat.fromMat3 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[8] - m.m[0] - m.m[4] ) * 2.0;
 
-			return new Quat(
+			return new lib3dmath.Quat(
 				(m.m[2] + m.m[6]) / s,
 				(m.m[5] + m.m[7]) / s,
 				0.5 / s,
@@ -99,14 +96,14 @@ Quat.fromMat3 = function( m ) {
 	}
 };
 
-Quat.fromMat4 = function( m ) {
+lib3dmath.Quat.fromMat4 = function( m ) {
 	var trace = m.m[0] + m.m[5] + m.m[10] + 1; /* add the diagonal values */
 
 	if( trace > 0.0 )
 	{
 		var s = 0.5 / Math.sqrt( trace );
 
-		return new Quat(
+		return new lib3dmath.Quat(
 			0.25 / s,
 			(m.m[9] - m.m[6]) * s,
 			(m.m[2] - m.m[8]) * s,
@@ -121,7 +118,7 @@ Quat.fromMat4 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[0] - m.m[5] - m.m[10] ) * 2.0;
 
-			return new Quat(
+			return new lib3dmath.Quat(
 				0.5 / s,
 				(m.m[1] + m.m[4]) / s,
 				(m.m[2] + m.m[8]) / s,
@@ -132,7 +129,7 @@ Quat.fromMat4 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[5] - m.m[0] - m.m[10] ) * 2.0;
 
-			return new Quat(
+			return new lib3dmath.Quat(
 				(m.m[1] + m.m[4]) / s,
 				0.5 / s,
 				(m.m[6] + m.m[9]) / s,
@@ -143,7 +140,7 @@ Quat.fromMat4 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[10] - m.m[0] - m.m[5] ) * 2.0;
 
-			return new Quat(
+			return new lib3dmath.Quat(
 				(m.m[2] + m.m[8]) / s,
 				(m.m[6] + m.m[9]) / s,
 				0.5 / s,
@@ -153,95 +150,101 @@ Quat.fromMat4 = function( m ) {
 	}
 };
 
-Quat.fromMatrix = function( m ) {
-	if( m instanceof Mat3 ) {
-		return Quat.fromMat3( m );
-	}
-	else {
-		return Quat.fromMat4( m );
-	}
+
+lib3dmath.Quat.prototype = {
+	magnitude: function() {
+		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w );
+	},
+
+	normalize: function() {
+		var magnitude = this.magnitude( q );
+		if( magnitude > 0.0 ) {
+			this.w /= magnitude;
+			this.x /= magnitude;
+			this.y /= magnitude;
+			this.z /= magnitude;
+		}
+	},
+
+	add: function( q ) {
+		return new Quat(
+			this.x + q.x,
+			this.y + q.y,
+			this.z + q.z,
+			this.w + q.w
+		);
+	},
+
+	multiply: function( q ) {
+		return new Quat(
+			this.w * q.x + this.x * q.w - this.y * q.z + this.z * q.y,
+			this.w * q.y + this.x * q.z + this.y * q.w - this.z * q.x,
+			this.w * q.z - this.x * q.y + this.y * q.x + this.z * q.w,
+			this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z
+		);
+	},
+
+	scale: function( s ) {
+		this.x *= s;;
+		this.y *= s;
+		this.z *= s;
+		this.w *= s;
+	},
+
+	dotProduct: function( q ) { /* 1 := similiar rotations */
+		return this.x * q.x + this.y * q.y + this.z * q.z + this.w * q.w;
+	},
+
+	conjugate: function( q ) {
+		return new Quat(
+			-q.x,
+			-q.y,
+			-q.z,
+			 q.w
+		);
+	},
+
+	rotate: function( v ) {
+		var q_v = Quat.fromVector( v );
+
+		var q_inverse = this.conjugate( );
+		var q_v_inverse = q_v.multiply( q_inverse );
+		var q_result = q.multiply( q_v_inverse );
+
+		return new Vec4( q_result.x, q_result.y, q_result.z, 0.0 );
+	},
+
+	toMat3: function( ) {
+		return new lib3dmath.Mat3(
+			1-2*this.y*this.y-2*this.z*this.z,  2*this.x*this.y+2*this.w*this.z,   2*this.x*this.z-2*this.w*this.y,
+			2*this.x*this.y-2*this.w*this.z,    1-2*this.x*this.x-2*this.z*this.z, 2*this.y*this.z+2*this.w*this.x,
+			2*this.x*this.z+2*this.w*this.y,    2*this.y*this.z-2*this.w*this.x,   1-2*this.x*this.x-2*this.y*this.y
+		);
+	},
+
+	toMat4: function( ) {
+		return new lib3dmath.Mat4(
+			1-2*this.y*this.y-2*this.z*this.z,  2*this.x*this.y+2*this.w*this.z,   2*this.x*this.z-2*this.w*this.y,   0.0,
+			2*this.x*this.y-2*this.w*this.z,    1-2*this.x*this.x-2*this.z*this.z, 2*this.y*this.z+2*this.w*this.x,   0.0,
+			2*this.x*this.z+2*this.w*this.y,    2*this.y*this.z-2*this.w*this.x,   1-2*this.x*this.x-2*this.y*this.y, 0.0,
+			0.0,                                0.0,                               0.0,                               1.0
+		);
+	},
+
+	angle: function( ) {
+		return Math.acos( this.w ) * 2.0;
+	},
+
+	extractAxisAndAngle: function( axis, angle ) {
+		angle = Math.acos( this.w ) * 2.0;
+		var sin_angle = Math.sin( 0.5 * angle );
+
+		axis.x = this.x / sin_angle;
+		axis.y = this.y / sin_angle;
+		axis.z = this.z / sin_angle;
+
+		if( axis instanceof Vec4 ) {
+			axis.w = 0.0;
+		}
+	},
 };
-
-Quat.prototype.add = function( q ) {
-	return new Quat(
-		this.x + q.x,
-		this.y + q.y,
-		this.z + q.z,
-		this.w + q.w
-	);
-};
-
-Quat.prototype.multiply = function( q ) {
-	return new Quat(
-		this.w * q.x + this.x * q.w - this.y * q.z + this.z * q.y,
-		this.w * q.y + this.x * q.z + this.y * q.w - this.z * q.x,
-		this.w * q.z - this.x * q.y + this.y * q.x + this.z * q.w,
-		this.w * q.w - this.x * q.x - this.y * q.y - this.z * q.z
-	);
-};
-
-Quat.prototype.scale = function( s ) {
-	this.x *= s;;
-	this.y *= s;
-	this.z *= s;
-	this.w *= s;
-};
-
-
-Quat.prototype.dotProduct = function( q ) { /* 1 := similiar rotations */
-    return this.x * q.x + this.y * q.y + this.z * q.z + this.w * q.w;
-};
-
-Quat.prototype.conjugate = function( q ) {
-	return new Quat(
-		-q.x,
-		-q.y,
-		-q.z,
-		 q.w
-	);
-};
-
-Quat.prototype.rotate = function( v ) {
-	var q_v = Quat.fromVector( v );
-
-	var q_inverse = this.conjugate( );
-	var q_v_inverse = q_v.multiply( q_inverse );
-	var q_result = q.multiply( q_v_inverse );
-
-	return new Vec4( q_result.x, q_result.y, q_result.z, 0.0 );
-};
-
-Quat.prototype.toMat3 = function( ) {
-	return new Mat3(
-		1-2*this.y*this.y-2*this.z*this.z,  2*this.x*this.y+2*this.w*this.z,   2*this.x*this.z-2*this.w*this.y,
-		2*this.x*this.y-2*this.w*this.z,    1-2*this.x*this.x-2*this.z*this.z, 2*this.y*this.z+2*this.w*this.x,
-		2*this.x*this.z+2*this.w*this.y,    2*this.y*this.z-2*this.w*this.x,   1-2*this.x*this.x-2*this.y*this.y
-	);
-};
-
-Quat.prototype.toMat4 = function( ) {
-	return new Mat4(
-		1-2*this.y*this.y-2*this.z*this.z,  2*this.x*this.y+2*this.w*this.z,   2*this.x*this.z-2*this.w*this.y,   0.0,
-		2*this.x*this.y-2*this.w*this.z,    1-2*this.x*this.x-2*this.z*this.z, 2*this.y*this.z+2*this.w*this.x,   0.0,
-		2*this.x*this.z+2*this.w*this.y,    2*this.y*this.z-2*this.w*this.x,   1-2*this.x*this.x-2*this.y*this.y, 0.0,
-		0.0,                                0.0,                               0.0,                               1.0
-	);
-};
-
-Quat.prototype.angle = function( ) {
-	return Math.acos( this.w ) * 2.0;
-};
-
-Quat.prototype.extract_axis_and_angle = function( axis, angle ) {
-	angle = Math.acos( this.w ) * 2.0;
-	var sin_angle = Math.sin( 0.5 * angle );
-
-	axis.x = this.x / sin_angle;
-	axis.y = this.y / sin_angle;
-	axis.z = this.z / sin_angle;
-
-	if( axis instanceof Vec4 ) {
-		axis.w = 0.0;
-	}
-};
-

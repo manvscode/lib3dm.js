@@ -1,4 +1,5 @@
-var Mathematics = (function() {
+"use strict";
+var lib3dmath = (function() {
 	var M = {
 		toRadians: function(degrees) { return degrees * this.RADIANS_PER_DEGREE; },
 		toDegrees: function(radians) { return radians * this.DEGREES_PER_RANDIAN; },
@@ -9,35 +10,6 @@ var Mathematics = (function() {
 		uniform: function() { return Math.random(); },
 		uniformRange: function(min, max) { var diff = max - min; return min + this.uniform() * diff; },
 		uniformUnit: function() { return 2 * this.uniform() - 1; },
-		/*
-		guassian: function(mean, stddev) {
-
-			if( guassian.spare_ready )
-			{
-				guassian.spare_ready = false;
-				return mean + stddev * guassian.spare;
-			}
-			else
-			{
-				var ux = 0.0;
-				var uy = 0.0;
-				var s = 0.0;
-
-				do {
-					ux = this.uniform_unit( );
-					uy = this.uniform_unit( );
-					s = ux * ux + uy * uy;
-				} while( s >= 1.0 || s <= 0.0 );
-
-				var mul = Math.sqrt( -2.0f * Math.log(s) / s );
-
-				guassian.spare = uy * mul;
-				guassian.spare_ready = true;
-
-				return mean + stddev * ux * mul;
-			}
-		},
-		*/
 		clamp: function(value, min, max) {
 			if( value > max )
 			{
@@ -52,7 +24,14 @@ var Mathematics = (function() {
 		}
 	};
 
+
 	Object.defineProperties( M, {
+		VERSION: {
+			value: "1.0",
+			writable: false,
+			enumerable: true,
+			configurable: false,
+		},
 		SCALAR_EPSILON: {
 			value: Math.EPSILON,
 			writable: false,
@@ -85,48 +64,6 @@ var Mathematics = (function() {
 		},
 		DEGREES_PER_RANDIAN: {
 			value: (180.0 / Math.PI),
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Vector2: {
-			value: Vec2,
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Vector3: {
-			value: Vec3,
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Vector4: {
-			value: Vec4,
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Matrix2: {
-			value: Mat2,
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Matrix3: {
-			value: Mat3,
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Matrix4: {
-			value: Mat4,
-			writable: false,
-			enumerable: true,
-			configurable: true,
-		},
-		Quaternion: {
-			value: Quat,
 			writable: false,
 			enumerable: true,
 			configurable: true,
