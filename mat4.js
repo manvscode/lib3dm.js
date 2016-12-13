@@ -86,7 +86,7 @@ lib3dmath.Mat4.prototype = {
 	},
 
 	multiplyVector: function( v ) {
-		return new Vec4(
+		return new lib3dmath.Vec4(
 			this.m[ 0] * v.x  +  this.m[ 4] * v.y  +  this.m[ 8] * v.z  +  this.m[12] * v.w,
 			this.m[ 1] * v.x  +  this.m[ 5] * v.y  +  this.m[ 9] * v.z  +  this.m[13] * v.w,
 			this.m[ 2] * v.x  +  this.m[ 6] * v.y  +  this.m[10] * v.z  +  this.m[14] * v.w,
@@ -95,7 +95,7 @@ lib3dmath.Mat4.prototype = {
 	},
 
 	multiply: function( o ) {
-		if( o instanceof Vec4 ) {
+		if( o instanceof lib3dmath.Vec4 ) {
 			return this.multiplyVector( o );
 		}
 		else {

@@ -13,7 +13,6 @@ var lib3dmath = (function() {
 		clamp: function(x, min, max) { return Math.min( Math.max(x, min), max ); },
 	};
 
-
 	Object.defineProperties( M, {
 		VERSION: {
 			value: "1.0",

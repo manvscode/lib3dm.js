@@ -135,7 +135,6 @@ lib3dmath.transforms = {
 	rigidBodyTransform: function( orientation, translation ) {
 		return translation.multiplyMatrix( orientation );
 	},
-	
 
 	lookAt: function( eye, target, up ) {
 		var z = new lib3dmath.Vec3( target.x - eye.x, target.y - eye.y, target.z - eye.z );
@@ -187,7 +186,7 @@ lib3dmath.transforms.projections = {
 	},
 
 	perspective: function( fov, aspect, near, far ) {
-		var A = 1.0 / tan(fov * 0.5);
+		var A = 1.0 / Math.tan(fov * 0.5);
 		var B = -far / (far - near);
 		var C = -(far * near)/ (far - near);
 

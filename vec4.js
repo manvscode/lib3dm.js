@@ -1,4 +1,3 @@
-
 /*
  * 4D vector
  */
@@ -16,9 +15,9 @@ lib3dmath.Vec4 = function( x, y, z, w ) {
 
 lib3dmath.Vec4.prototype = {
 	add: function( v ) {
-		return new lib3dmath.Vec4( 
-			this.x + v.x, 
-			this.y + v.y, 
+		return new lib3dmath.Vec4(
+			this.x + v.x,
+			this.y + v.y,
 			this.z + v.z,
 			this.w + v.w
 		);
@@ -26,8 +25,8 @@ lib3dmath.Vec4.prototype = {
 
 	subtract: function( v ) {
 		return new lib3dmath.Vec4(
-			this.x - v.x, 
-			this.y - v.y, 
+			this.x - v.x,
+			this.y - v.y,
 			this.z - v.z,
 			this.w - v.w
 		);

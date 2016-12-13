@@ -1,7 +1,6 @@
 /*
  * 3D matrix
  */
-
 lib3dmath.Mat3 = function( a, b, c, d, e, f, g, h, i ) {
 	if( this instanceof lib3dmath.Mat3 ) {
 		this.m = [a || 0, b || 0, c || 0,
@@ -55,7 +54,7 @@ lib3dmath.Mat3.prototype = {
 	},
 
 	multiplyMatrix: function( m ) {
-		return new lib3dmath.Mat3( 
+		return new lib3dmath.Mat3(
 			this.m[ 0 ] * m.m[ 0 ] + this.m[ 3 ] * m.m[ 1 ] + this.m[ 6 ] * m.m[ 2 ],
 			this.m[ 1 ] * m.m[ 0 ] + this.m[ 4 ] * m.m[ 1 ] + this.m[ 7 ] * m.m[ 2 ],
 			this.m[ 2 ] * m.m[ 0 ] + this.m[ 5 ] * m.m[ 1 ] + this.m[ 8 ] * m.m[ 2 ],
@@ -71,7 +70,7 @@ lib3dmath.Mat3.prototype = {
 	},
 
 	multiplyVector: function( v ) {
-		return new lib3dmath.Vec3( 
+		return new lib3dmath.Vec3(
 			this.m[ 0 ] * v.x  +  this.m[ 3 ] * v.y  +  this.m[ 6 ] * v.z,
 			this.m[ 1 ] * v.x  +  this.m[ 4 ] * v.y  +  this.m[ 7 ] * v.z,
 			this.m[ 2 ] * v.x  +  this.m[ 5 ] * v.y  +  this.m[ 8 ] * v.z

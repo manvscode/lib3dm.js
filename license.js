@@ -1,4 +1,4 @@
-/* Copyright (C) 2013-2014 by Joseph A. Marrero, http://www.manvscode.com/
+/* Copyright (C) 2013 by Joseph A. Marrero, http://www.manvscode.com/
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,7 +18,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * This software is a port of Joe Marrero's lib3dmath library. Joe ported this 
+ * This software is a port of Joe Marrero's lib3dmath library. Joe ported this
  * over for WebGL applications that need a decoupled math library for 3D graphics.
  *
  * The original C code is maintained at http://bitbucket.org/manvscode/lib3dmath

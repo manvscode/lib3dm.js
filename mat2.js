@@ -25,7 +25,7 @@ lib3dmath.Mat2.prototype = {
 	},
 
 	multiplyMatrix: function( m ) {
-		return new lib3dmath.Mat2( 
+		return new lib3dmath.Mat2(
 			this.m[ 0 ] * m.m[ 0 ] + this.m[ 2 ] * m.m[ 1 ],
 			this.m[ 1 ] * m.m[ 0 ] + this.m[ 3 ] * m.m[ 1 ],
 			this.m[ 0 ] * m.m[ 2 ] + this.m[ 2 ] * m.m[ 3 ],
@@ -34,7 +34,7 @@ lib3dmath.Mat2.prototype = {
 	},
 
 	multiplyVector: function( v ) {
-		return new lib3dmath.Vec2( 
+		return new lib3dmath.Vec2(
 			this.m[ 0 ] * v.x + this.m[ 2 ] * v.y,
 			this.m[ 1 ] * v.x + this.m[ 3 ] * v.y
 		);

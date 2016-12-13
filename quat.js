@@ -150,14 +150,13 @@ lib3dmath.Quat.fromMat4 = function( m ) {
 	}
 };
 
-
 lib3dmath.Quat.prototype = {
 	magnitude: function() {
 		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w );
 	},
 
 	normalize: function() {
-		var magnitude = this.magnitude( q );
+		var magnitude = this.magnitude( );
 		if( magnitude > 0.0 ) {
 			this.w /= magnitude;
 			this.x /= magnitude;
@@ -167,7 +166,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	add: function( q ) {
-		return new Quat(
+		return new lib3dmath.Quat(
 			this.x + q.x,
 			this.y + q.y,
 			this.z + q.z,
@@ -176,7 +175,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	multiply: function( q ) {
-		return new Quat(
+		return new lib3dmath.Quat(
 			this.w * q.x + this.x * q.w - this.y * q.z + this.z * q.y,
 			this.w * q.y + this.x * q.z + this.y * q.w - this.z * q.x,
 			this.w * q.z - this.x * q.y + this.y * q.x + this.z * q.w,
@@ -196,7 +195,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	conjugate: function( q ) {
-		return new Quat(
+		return new lib3dmath.Quat(
 			-q.x,
 			-q.y,
 			-q.z,
@@ -205,7 +204,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	rotate: function( v ) {
-		var q_v = Quat.fromVector( v );
+		var q_v = lib3dmath.Quat.fromVector( v );
 
 		var q_inverse = this.conjugate( );
 		var q_v_inverse = q_v.multiply( q_inverse );

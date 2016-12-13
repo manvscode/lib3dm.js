@@ -2,14 +2,23 @@
 
 # Combine all the pieces
 cat mathematics.js > tmp
+echo >> tmp
 cat vec2.js >> tmp
+echo >> tmp
 cat vec3.js >> tmp
+echo >> tmp
 cat vec4.js >> tmp
+echo >> tmp
 cat mat2.js >> tmp
+echo >> tmp
 cat mat3.js >> tmp
+echo >> tmp
 cat mat4.js >> tmp
+echo >> tmp
 cat quat.js >> tmp
+echo >> tmp
 cat transforms.js >> tmp
+echo >> tmp
 cat geometric-tools.js >> tmp
 
 # Build debug version
