@@ -104,7 +104,7 @@ lib3dmath.Vec3.prototype = {
 	},
 
 	toString: function( ) {
-		return "(" + this.x + ", " + this.y + ", " + this.z + ")";
+		return "(" + lib3dmath.format(this.x) + ", " + lib3dmath.format(this.y) + ", " + lib3dmath.format(this.z) + ")";
 	},
 };
 

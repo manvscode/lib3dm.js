@@ -11,6 +11,7 @@ var lib3dmath = (function() {
 		uniformRange: function(min, max) { var diff = max - min; return min + this.uniform() * diff; },
 		uniformUnit: function() { return 2 * this.uniform() - 1; },
 		clamp: function(x, min, max) { return Math.min( Math.max(x, min), max ); },
+		format: function(n) { var result = n.toFixed(3); if(n >= 0) { result = " "+result; } return result; }
 	};
 
 	Object.defineProperties( M, {

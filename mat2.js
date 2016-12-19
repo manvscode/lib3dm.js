@@ -92,8 +92,8 @@ lib3dmath.Mat2.prototype = {
 	},
 
 	toString: function( ) {
-		return "|" + this.m[0] + " " + this.m[2] + "|\n" +
-			   "|" + this.m[1] + " " + this.m[3] + "|\n";
+		return "|" + lib3dmath.format(this.m[0]) + " " + lib3dmath.format(this.m[2]) + "|\n" +
+			   "|" + lib3dmath.format(this.m[1]) + " " + lib3dmath.format(this.m[3]) + "|\n";
 	},
 };
 

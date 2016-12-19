@@ -96,7 +96,7 @@ lib3dmath.Vec2.prototype = {
 	},
 
 	toString: function( ) {
-		return "(" + this.x + ", " + this.y + ")";
+		return "(" + lib3dmath.format(this.x) + ", " + lib3dmath.format(this.y) + ")";
 	},
 };
 

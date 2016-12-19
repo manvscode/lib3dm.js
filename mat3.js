@@ -161,9 +161,9 @@ lib3dmath.Mat3.prototype = {
 	},
 
 	toString: function( ) {
-		return "|" + this.m[0] + " " + this.m[3] + " " + this.m[6] + "|\n" +
-			   "|" + this.m[1] + " " + this.m[4] + " " + this.m[7] + "|\n" +
-			   "|" + this.m[2] + " " + this.m[5] + " " + this.m[8] + "|\n";
+		return "|" + lib3dmath.format(this.m[0]) + " " + lib3dmath.format(this.m[3]) + " " + lib3dmath.format(this.m[6]) + "|\n" +
+			   "|" + lib3dmath.format(this.m[1]) + " " + lib3dmath.format(this.m[4]) + " " + lib3dmath.format(this.m[7]) + "|\n" +
+			   "|" + lib3dmath.format(this.m[2]) + " " + lib3dmath.format(this.m[5]) + " " + lib3dmath.format(this.m[8]) + "|\n";
 	},
 };
 

@@ -228,10 +228,10 @@ lib3dmath.Mat4.prototype = {
 	},
 
 	toString: function( ) {
-		return "|" + this.m[0] + " " + this.m[4] + " " + this.m[ 8] + " " + this.m[12] + "|\n" +
-			   "|" + this.m[1] + " " + this.m[5] + " " + this.m[ 9] + " " + this.m[13] + "|\n" +
-			   "|" + this.m[2] + " " + this.m[6] + " " + this.m[10] + " " + this.m[14] + "|\n" +
-			   "|" + this.m[3] + " " + this.m[7] + " " + this.m[11] + " " + this.m[15] + "|\n";
+		return "|" + lib3dmath.format(this.m[0]) + " " + lib3dmath.format(this.m[4]) + " " + lib3dmath.format(this.m[ 8]) + " " + lib3dmath.format(this.m[12]) + "|\n" +
+			   "|" + lib3dmath.format(this.m[1]) + " " + lib3dmath.format(this.m[5]) + " " + lib3dmath.format(this.m[ 9]) + " " + lib3dmath.format(this.m[13]) + "|\n" +
+			   "|" + lib3dmath.format(this.m[2]) + " " + lib3dmath.format(this.m[6]) + " " + lib3dmath.format(this.m[10]) + " " + lib3dmath.format(this.m[14]) + "|\n" +
+			   "|" + lib3dmath.format(this.m[3]) + " " + lib3dmath.format(this.m[7]) + " " + lib3dmath.format(this.m[11]) + " " + lib3dmath.format(this.m[15]) + "|\n";
 	},
 };
 
