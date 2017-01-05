@@ -42,7 +42,7 @@ lib3dmath.Vec3.prototype = {
 	},
 
 	magnitude: function( ) {
-		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * v.z );
+		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z );
 	},
 
 	distance: function( v ) {

@@ -50,7 +50,7 @@ lib3dmath.Vec4.prototype = {
 	},
 
 	magnitude: function( ) {
-		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * v.z + this.w * v.w );
+		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w );
 	},
 
 	distance: function( v ) {
