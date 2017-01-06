@@ -132,8 +132,13 @@ lib3dmath.transforms = {
 	},
 
 
-	rigidBodyTransform: function( orientation, translation ) {
-		return translation.multiplyMatrix( orientation );
+	rigidBodyTransform: function( orientation, translation, scale = null ) {
+        if( scale ) {
+		    return translation.multiplyMatrix( orientation ).multiplyMatrix( scale );
+        }
+        else {
+		    return translation.multiplyMatrix( orientation );
+        }
 	},
 
 	lookAt: function( eye, target, up ) {
