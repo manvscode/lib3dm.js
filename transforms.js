@@ -63,19 +63,19 @@ lib3dmath.transforms = {
 	},
 
 	scale: function( s ) {
-		if( s instanceof Number ) {
+		if( s instanceof lib3dmath.Vec3 || s instanceof lib3dmath.Vec4 ) {
 			return new lib3dmath.Mat4(
-				 s,    0.0,  0.0,  0.0,
-				 0.0,    s,  0.0,  0.0,
-				 0.0,  0.0,    s,  0.0,
+				 s.x,  0.0,  0.0,  0.0,
+				 0.0,  s.y,  0.0,  0.0,
+				 0.0,  0.0,  s.z,  0.0,
 				 0.0,  0.0,  0.0,  1.0
 			);
 		}
 		else {
 			return new lib3dmath.Mat4(
-				 s.x,  0.0,  0.0,  0.0,
-				 0.0,  s.y,  0.0,  0.0,
-				 0.0,  0.0,  s.z,  0.0,
+				 s,    0.0,  0.0,  0.0,
+				 0.0,    s,  0.0,  0.0,
+				 0.0,  0.0,    s,  0.0,
 				 0.0,  0.0,  0.0,  1.0
 			);
 		}
