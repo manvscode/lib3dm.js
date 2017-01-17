@@ -13,6 +13,25 @@ lib3dmath.Mat4 = function( a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p ) {
 	}
 };
 
+lib3dmath.Mat4.fromMatrix = function( m ) {
+	if( m instanceof lib3dmath.Mat4 ) {
+		return new lib3dmath.Mat4(
+			m.m[ 0], m.m[ 1], m.m[ 2], m.m[ 3],
+			m.m[ 4], m.m[ 5], m.m[ 6], m.m[ 7],
+			m.m[ 8], m.m[ 9], m.m[10], m.m[11],
+			m.m[12], m.m[13], m.m[14], m.m[15]
+		);
+	}
+	else if( m instanceof lib3dmath.Mat3 ) {
+		return new lib3dmath.Mat3(
+			m.m[0], m.m[1], m.m[2], 0,
+			m.m[3], m.m[4], m.m[5], 0,
+			m.m[6], m.m[7], m.m[8], 0,
+			     0,      0,      0, 1
+		);
+	}
+};
+
 lib3dmath.Mat4.fromAxisAngle = function( axis, angle ) {
 	var sin_a           = scaler_sin(angle);
 	var cos_a           = scaler_cos(angle);
