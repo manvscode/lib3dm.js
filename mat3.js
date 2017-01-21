@@ -143,7 +143,7 @@ lib3dmath.Mat3.prototype = {
 	invert: function() {
 		var det = this.determinant();
 
-		if( Math.abs(det) > Math.EPSILON ) // testing if not zero
+		if( Math.abs(det) > Number.EPSILON ) // testing if not zero
 		{
 			this.adjoint( );
 

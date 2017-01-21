@@ -72,7 +72,7 @@ lib3dmath.Vec3.prototype = {
 
 	isNormalized: function( ) {
 		var length = this.magnitude();
-		return (Math.abs(length - 1.0) < Math.EPSILON);
+		return (Math.abs(length - 1.0) < Number.EPSILON);
 	},
 
 	negate: function( ) {

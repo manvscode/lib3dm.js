@@ -107,7 +107,7 @@ lib3dmath.transforms = {
 		);
 	},
 
-	orientation: function( f, l, u ) {
+	orientationMatrix4: function( f, l, u ) {
 		f.normalize();
 		l.normalize();
 		u.normalize();
@@ -117,6 +117,18 @@ lib3dmath.transforms = {
 			u.x,   u.y,  u.z,  0.0,
 			f.x,   f.y,  f.z,  0.0, // TODO: Check if this should be negative forward vector
 			0.0,   0.0,  0.0,  1.0
+		);
+	},
+
+	orientationMatrix3: function( f, l, u ) {
+		f.normalize();
+		l.normalize();
+		u.normalize();
+
+		return new lib3dmath.Mat3(
+			l.x,   l.y,  l.z,
+			u.x,   u.y,  u.z,
+			f.x,   f.y,  f.z // TODO: Check if this should be negative forward vector
 		);
 	},
 

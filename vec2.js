@@ -67,7 +67,7 @@ lib3dmath.Vec2.prototype = {
 	},
 
 	isNormalized: function( ) {
-		return Math.abs(length - 1.0) < Math.EPSILON;
+		return Math.abs(length - 1.0) < Number.EPSILON;
 	},
 
 	negate: function( ) {

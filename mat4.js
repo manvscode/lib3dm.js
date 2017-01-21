@@ -179,7 +179,7 @@ lib3dmath.Mat4.prototype = {
 		var d4 = this.m[4] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]) - this.m[5] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]) + this.m[6] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
 		var det = this.m[0]*d1 - this.m[1]*d2 + this.m[2]*d3 - this.m[3]*d4;
 
-		if( Math.abs(det) > Math.EPSILON ) // testing if not zero
+		if( Math.abs(det) > Number.EPSILON ) // testing if not zero
 		{
 			var cofactor_matrix = new lib3dmath.Mat4(
 				+(d1),

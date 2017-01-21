@@ -79,10 +79,8 @@ lib3dmath.Vec4.prototype = {
 	},
 
 	isNormalized: function( ) {
-		return (Math.abs(this.x - 1.0) < Math.EPSILON) &&
-			   (Math.abs(this.y - 1.0) < Math.EPSILON) &&
-			   (Math.abs(this.z - 1.0) < Math.EPSILON) &&
-			   (Math.abs(this.w - 1.0) < Math.EPSILON);
+		var length = this.magnitude();
+		return (Math.abs(length - 1.0) < Number.EPSILON);
 	},
 
 	negate: function( ) {

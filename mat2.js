@@ -52,7 +52,7 @@ lib3dmath.Mat2.prototype = {
 	invert: function( ) {
 		var det = this.determinant( );
 
-		if( det > Math.EPSILON )
+		if( det > Number.EPSILON )
 		{
 			{
 				var tmp = this.m[ 0 ];
