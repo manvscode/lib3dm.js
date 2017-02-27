@@ -108,28 +108,55 @@ lib3dmath.transforms = {
 	},
 
 	orientationMatrix4: function( f, l, u ) {
-		f.normalize();
-		l.normalize();
-		u.normalize();
+		if( f instanceof lib3dmath.Mat3 ) {
+			return new lib3dmath.Mat4(
+				f.m[ 0], f.m[ 1], f.m[ 2], 0,
+				f.m[ 3], f.m[ 4], f.m[ 5], 0,
+				f.m[ 6], f.m[ 7], f.m[ 8], 0,
+				      0,       0,       0, 1
+			);
+		}
+		else if( f instanceof lib3dmath.Mat4 ) {
+			return new lib3dmath.Mat4(
+				f.m[ 0], f.m[ 1], f.m[ 2], 0,
+				f.m[ 4], f.m[ 5], f.m[ 6], 0,
+				f.m[ 8], f.m[ 9], f.m[10], 0,
+				      0,       0,       0, 1
+			);
+		}
+		else {
+			f.normalize();
+			l.normalize();
+			u.normalize();
 
-		return new lib3dmath.Mat4(
-			l.x,   l.y,  l.z,  0.0,
-			u.x,   u.y,  u.z,  0.0,
-			f.x,   f.y,  f.z,  0.0, // TODO: Check if this should be negative forward vector
-			0.0,   0.0,  0.0,  1.0
-		);
+			return new lib3dmath.Mat4(
+				l.x,   l.y,  l.z,  0.0,
+				u.x,   u.y,  u.z,  0.0,
+				f.x,   f.y,  f.z,  0.0, // TODO: Check if this should be negative forward vector
+				0.0,   0.0,  0.0,  1.0
+			);
+		}
 	},
 
 	orientationMatrix3: function( f, l, u ) {
-		f.normalize();
-		l.normalize();
-		u.normalize();
+		if( f instanceof lib3dmath.Mat4 ) {
+			return new lib3dmath.Mat3(
+				f.m[ 0], f.m[ 1], f.m[ 2],
+				f.m[ 4], f.m[ 5], f.m[ 6],
+				f.m[ 8], f.m[ 9], f.m[10]
+			);
+		}
+		else {
+			f.normalize();
+			l.normalize();
+			u.normalize();
 
-		return new lib3dmath.Mat3(
-			l.x,   l.y,  l.z,
-			u.x,   u.y,  u.z,
-			f.x,   f.y,  f.z // TODO: Check if this should be negative forward vector
-		);
+			return new lib3dmath.Mat3(
+				l.x,   l.y,  l.z,
+				u.x,   u.y,  u.z,
+				f.x,   f.y,  f.z // TODO: Check if this should be negative forward vector
+			);
+		}
 	},
 
 	changeHandedness: function() {
@@ -142,7 +169,6 @@ lib3dmath.transforms = {
 			 0, 0,  0, 1
 		);
 	},
-
 
 	rigidBodyTransform: function( orientation, translation, scale = null ) {
         if( scale ) {
