@@ -64,6 +64,7 @@ lib3dmath.Vec2.prototype = {
 			this.x /= length;
 			this.y /= length;
 		}
+		return this;
 	},
 
 	isNormalized: function( ) {
@@ -73,11 +74,13 @@ lib3dmath.Vec2.prototype = {
 	negate: function( ) {
 		this.x = -this.x;
 		this.y = -this.y;
+		return this;
 	},
 
 	zero: function( ) {
 		this.x = 0.0;
 		this.y = 0.0;
+		return this;
 	},
 
 	lerp: function( a, b, s ) {
