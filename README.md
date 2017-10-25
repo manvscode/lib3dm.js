@@ -18,6 +18,12 @@ At this time the build script depends on the bash shell--so no Windows build sup
 ### Unix-like OSs
 Just run ./build.sh
 
+## Donate, if you found this software useful
+
+The development of this software took numerous hours of development and testing.  If you found this useful to you, then please consider making a [donation of bitcoin.](https://bitpay.com/cart/add?itemId=DqFRQjE8NwvKfYktgc85ya)
+
+All donations help cover maintenance costs.
+
 # License
 You may use *lib3dmath.js* in a commercial product as long as the below copyright is retained in the source directory and on all source files.
 
