@@ -21,11 +21,13 @@ cat transforms.js >> tmp
 echo >> tmp
 cat geometric-tools.js >> tmp
 
-# Build debug version
+# Build client-side debug version
 cat license.js > lib3dmath.js
 cat tmp >> lib3dmath.js
+cp lib3dmath.js index.js
+echo "\nmodule.exports = lib3dmath;" >> index.js
 
-# Build minified version
+# Build client-side minified version
 cat license.js > lib3dmath.min.js
 jsmin < lib3dmath.js >> lib3dmath.min.js
 

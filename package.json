@@ -1,0 +1,21 @@
+{
+  "name": "lib3dmath",
+  "version": "1.0.1",
+  "description": "3D math library for WebGL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/manvscode/lib3dmath.js.git"
+  },
+  "keywords": [
+    "math",
+    "webgl",
+    "3d"
+  ],
+  "author": "Joe Marrero <manvscode@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/manvscode/lib3dmath.js#readme"
+}
