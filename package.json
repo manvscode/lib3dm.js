@@ -1,14 +1,19 @@
 {
-  "name": "lib3dmath",
+  "name": "m3d",
   "version": "1.0.1",
   "description": "3D math library for WebGL.",
-  "main": "index.js",
+  "main": "build.js",
+  "commands": {
+    "build": "node build.js",
+    "clean": "node clean.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build.js",
+    "clean": "node clean.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/manvscode/lib3dmath.js.git"
+    "url": "git+ssh://git@github.org/manvscode/m3d.js.git"
   },
   "keywords": [
     "math",
@@ -17,5 +22,8 @@
   ],
   "author": "Joe Marrero <manvscode@gmail.com>",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/manvscode/lib3dmath.js#readme"
+  "homepage": "https://github.org/manvscode/m3d.js#readme",
+  "dependencies": {
+    "jsmin": "^1.0.1"
+  }
 }

@@ -1,3 +1,4 @@
-lib3dmath.js
-lib3dmath.min.js
-index.js
+node_modules/
+out/*.js
+package-lock.json
+

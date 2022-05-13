@@ -1,21 +1,21 @@
 /*
  * 4D vector
  */
-lib3dmath.Vec4 = function( x, y, z, w ) {
-	if( this instanceof lib3dmath.Vec4) {
+m3d.Vec4 = function( x, y, z, w ) {
+	if( this instanceof m3d.Vec4) {
 		this.x = x || 0;
 		this.y = y || 0;
 		this.z = z || 0;
 		this.w = w || 0;
 	}
 	else {
-		return new lib3dmath.Vec4( x, y, z, w );
+		return new m3d.Vec4( x, y, z, w );
 	}
 };
 
-lib3dmath.Vec4.prototype = {
+m3d.Vec4.prototype = {
 	add: function( v ) {
-		return new lib3dmath.Vec4(
+		return new m3d.Vec4(
 			this.x + v.x,
 			this.y + v.y,
 			this.z + v.z,
@@ -24,7 +24,7 @@ lib3dmath.Vec4.prototype = {
 	},
 
 	subtract: function( v ) {
-		return new lib3dmath.Vec4(
+		return new m3d.Vec4(
 			this.x - v.x,
 			this.y - v.y,
 			this.z - v.z,
@@ -33,7 +33,7 @@ lib3dmath.Vec4.prototype = {
 	},
 
 	multiply: function( s ) {
-		return new lib3dmath.Vec4(
+		return new m3d.Vec4(
 			this.x * s,
 			this.y * s,
 			this.z * s,
@@ -101,11 +101,11 @@ lib3dmath.Vec4.prototype = {
 	},
 
 	lerp: function( a, b, s ) {
-		return new lib3dmath.Vec4(
-			lib3dmath.lerp( s, a.x, b.x ),
-			lib3dmath.lerp( s, a.y, b.y ),
-			lib3dmath.lerp( s, a.z, b.z ),
-			lib3dmath.lerp( s, a.w, b.w )
+		return new m3d.Vec4(
+			m3d.lerp( s, a.x, b.x ),
+			m3d.lerp( s, a.y, b.y ),
+			m3d.lerp( s, a.z, b.z ),
+			m3d.lerp( s, a.w, b.w )
 		);
 	},
 
@@ -118,42 +118,42 @@ lib3dmath.Vec4.prototype = {
 	},
 
 	toString: function( ) {
-		return "(" + lib3dmath.format(this.x) + ", " + lib3dmath.format(this.y) + ", " + lib3dmath.format(this.z) + ", " + lib3dmath.format(this.w) + ")";
+		return "(" + m3d.format(this.x) + ", " + m3d.format(this.y) + ", " + m3d.format(this.z) + ", " + m3d.format(this.w) + ")";
 	},
 };
 
-lib3dmath.Vec4.ZERO = (function() {
-	var z = new lib3dmath.Vec4( 0, 0, 0, 0 );
+m3d.Vec4.ZERO = (function() {
+	var z = new m3d.Vec4( 0, 0, 0, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec4.ONE = (function() {
-	var z = new lib3dmath.Vec4( 1, 1, 1, 1 );
+m3d.Vec4.ONE = (function() {
+	var z = new m3d.Vec4( 1, 1, 1, 1 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec4.XUNIT = (function() {
-	var x = new lib3dmath.Vec4( 1, 0, 0, 0 );
+m3d.Vec4.XUNIT = (function() {
+	var x = new m3d.Vec4( 1, 0, 0, 0 );
 	Object.freeze( x );
 	return x;
 }());
 
-lib3dmath.Vec4.YUNIT = (function() {
-	var y = new lib3dmath.Vec4( 0, 1, 0, 0 );
+m3d.Vec4.YUNIT = (function() {
+	var y = new m3d.Vec4( 0, 1, 0, 0 );
 	Object.freeze( y );
 	return y;
 }());
 
-lib3dmath.Vec4.ZUNIT = (function() {
-	var z = new lib3dmath.Vec4( 0, 0, 1, 0 );
+m3d.Vec4.ZUNIT = (function() {
+	var z = new m3d.Vec4( 0, 0, 1, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec4.WUNIT = (function() {
-	var w = new lib3dmath.Vec4( 0, 0, 0, 1 );
+m3d.Vec4.WUNIT = (function() {
+	var w = new m3d.Vec4( 0, 0, 0, 1 );
 	Object.freeze( w );
 	return w;
 }());

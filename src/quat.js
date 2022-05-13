@@ -1,20 +1,20 @@
 /*
  * Quaternion
  */
-lib3dmath.Quat = function( x, y, z, w ) {
-	if( this instanceof lib3dmath.Quat) {
+m3d.Quat = function( x, y, z, w ) {
+	if( this instanceof m3d.Quat) {
 		this.x = x || 0;
 		this.y = y || 0;
 		this.z = z || 0;
 		this.w = w || 0;
 	}
 	else {
-		return new lib3dmath.Quat( x, y, z, w );
+		return new m3d.Quat( x, y, z, w );
 	}
 };
 
-lib3dmath.Quat.fromAxisAngle = function( axis, angle ) {
-	var q = new lib3dmath.Quat(
+m3d.Quat.fromAxisAngle = function( axis, angle ) {
+	var q = new m3d.Quat(
 		Math.cos( angle / 2.0 ),
 		axis.x * Math.sin( angle / 2.0 ),
 		axis.y * Math.sin( angle / 2.0 ),
@@ -24,8 +24,8 @@ lib3dmath.Quat.fromAxisAngle = function( axis, angle ) {
 	return q;
 };
 
-lib3dmath.Quat.fromVector = function( v ) {
-	return new lib3dmath.Quat(
+m3d.Quat.fromVector = function( v ) {
+	return new m3d.Quat(
 		v.x,
 		v.y,
 		v.z,
@@ -33,23 +33,23 @@ lib3dmath.Quat.fromVector = function( v ) {
 	);
 };
 
-lib3dmath.Quat.fromMatrix = function( m ) {
-	if( m instanceof lib3dmath.Mat3) {
-		return lib3dmath.Quat.fromMat3( m );
+m3d.Quat.fromMatrix = function( m ) {
+	if( m instanceof m3d.Mat3) {
+		return m3d.Quat.fromMat3( m );
 	}
 	else {
-		return lib3dmath.Quat.fromMat4( m );
+		return m3d.Quat.fromMat4( m );
 	}
 };
 
-lib3dmath.Quat.fromMat3 = function( m ) {
+m3d.Quat.fromMat3 = function( m ) {
 	var trace = m.m[0] + m.m[4] + m.m[8]; /* add the diagonal values */
 
 	if( trace > 0.0 )
 	{
 		var s = 0.5 / Math.sqrt( trace );
 
-		return new lib3dmath.Quat(
+		return new m3d.Quat(
 			0.25 / s,
 			(m.m[7] - m.m[5]) * s,
 			(m.m[2] - m.m[6]) * s,
@@ -64,7 +64,7 @@ lib3dmath.Quat.fromMat3 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[0] - m.m[4] - m.m[8] ) * 2.0;
 
-			return new lib3dmath.Quat(
+			return new m3d.Quat(
 				0.5 / s,
 				(m.m[1] + m.m[3]) / s,
 				(m.m[2] + m.m[6]) / s,
@@ -75,7 +75,7 @@ lib3dmath.Quat.fromMat3 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[4] - m.m[0] - m.m[8] ) * 2.0;
 
-			return new lib3dmath.Quat(
+			return new m3d.Quat(
 				(m.m[1] + m.m[3]) / s,
 				0.5 / s,
 				(m.m[5] + m.m[7]) / s,
@@ -86,7 +86,7 @@ lib3dmath.Quat.fromMat3 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[8] - m.m[0] - m.m[4] ) * 2.0;
 
-			return new lib3dmath.Quat(
+			return new m3d.Quat(
 				(m.m[2] + m.m[6]) / s,
 				(m.m[5] + m.m[7]) / s,
 				0.5 / s,
@@ -96,14 +96,14 @@ lib3dmath.Quat.fromMat3 = function( m ) {
 	}
 };
 
-lib3dmath.Quat.fromMat4 = function( m ) {
+m3d.Quat.fromMat4 = function( m ) {
 	var trace = m.m[0] + m.m[5] + m.m[10] + 1; /* add the diagonal values */
 
 	if( trace > 0.0 )
 	{
 		var s = 0.5 / Math.sqrt( trace );
 
-		return new lib3dmath.Quat(
+		return new m3d.Quat(
 			0.25 / s,
 			(m.m[9] - m.m[6]) * s,
 			(m.m[2] - m.m[8]) * s,
@@ -118,7 +118,7 @@ lib3dmath.Quat.fromMat4 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[0] - m.m[5] - m.m[10] ) * 2.0;
 
-			return new lib3dmath.Quat(
+			return new m3d.Quat(
 				0.5 / s,
 				(m.m[1] + m.m[4]) / s,
 				(m.m[2] + m.m[8]) / s,
@@ -129,7 +129,7 @@ lib3dmath.Quat.fromMat4 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[5] - m.m[0] - m.m[10] ) * 2.0;
 
-			return new lib3dmath.Quat(
+			return new m3d.Quat(
 				(m.m[1] + m.m[4]) / s,
 				0.5 / s,
 				(m.m[6] + m.m[9]) / s,
@@ -140,7 +140,7 @@ lib3dmath.Quat.fromMat4 = function( m ) {
 		{
 			var s = Math.sqrt( 1.0 + m.m[10] - m.m[0] - m.m[5] ) * 2.0;
 
-			return new lib3dmath.Quat(
+			return new m3d.Quat(
 				(m.m[2] + m.m[8]) / s,
 				(m.m[6] + m.m[9]) / s,
 				0.5 / s,
@@ -150,7 +150,7 @@ lib3dmath.Quat.fromMat4 = function( m ) {
 	}
 };
 
-lib3dmath.Quat.prototype = {
+m3d.Quat.prototype = {
 	magnitude: function() {
 		return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w );
 	},
@@ -166,7 +166,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	add: function( q ) {
-		return new lib3dmath.Quat(
+		return new m3d.Quat(
 			this.x + q.x,
 			this.y + q.y,
 			this.z + q.z,
@@ -175,7 +175,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	multiply: function( q ) {
-		return new lib3dmath.Quat(
+		return new m3d.Quat(
 			this.w * q.x + this.x * q.w - this.y * q.z + this.z * q.y,
 			this.w * q.y + this.x * q.z + this.y * q.w - this.z * q.x,
 			this.w * q.z - this.x * q.y + this.y * q.x + this.z * q.w,
@@ -195,7 +195,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	conjugate: function( q ) {
-		return new lib3dmath.Quat(
+		return new m3d.Quat(
 			-q.x,
 			-q.y,
 			-q.z,
@@ -204,7 +204,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	rotate: function( v ) {
-		var q_v = lib3dmath.Quat.fromVector( v );
+		var q_v = m3d.Quat.fromVector( v );
 
 		var q_inverse = this.conjugate( );
 		var q_v_inverse = q_v.multiply( q_inverse );
@@ -214,7 +214,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	toMat3: function( ) {
-		return new lib3dmath.Mat3(
+		return new m3d.Mat3(
 			1-2*this.y*this.y-2*this.z*this.z,  2*this.x*this.y+2*this.w*this.z,   2*this.x*this.z-2*this.w*this.y,
 			2*this.x*this.y-2*this.w*this.z,    1-2*this.x*this.x-2*this.z*this.z, 2*this.y*this.z+2*this.w*this.x,
 			2*this.x*this.z+2*this.w*this.y,    2*this.y*this.z-2*this.w*this.x,   1-2*this.x*this.x-2*this.y*this.y
@@ -222,7 +222,7 @@ lib3dmath.Quat.prototype = {
 	},
 
 	toMat4: function( ) {
-		return new lib3dmath.Mat4(
+		return new m3d.Mat4(
 			1-2*this.y*this.y-2*this.z*this.z,  2*this.x*this.y+2*this.w*this.z,   2*this.x*this.z-2*this.w*this.y,   0.0,
 			2*this.x*this.y-2*this.w*this.z,    1-2*this.x*this.x-2*this.z*this.z, 2*this.y*this.z+2*this.w*this.x,   0.0,
 			2*this.x*this.z+2*this.w*this.y,    2*this.y*this.z-2*this.w*this.x,   1-2*this.x*this.x-2*this.y*this.y, 0.0,

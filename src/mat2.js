@@ -1,23 +1,23 @@
 /*
  * 2D matrix
  */
-lib3dmath.Mat2 = function( a, b, c, d ) {
-	if( this instanceof lib3dmath.Mat2) {
+m3d.Mat2 = function( a, b, c, d ) {
+	if( this instanceof m3d.Mat2) {
 		this.m = [a || 0, b || 0,
 		          c || 0, d || 0];
 	}
 	else {
-		return new lib3dmath.Mat2( a, b, c, d );
+		return new m3d.Mat2( a, b, c, d );
 	}
 };
 
-lib3dmath.Mat2.prototype = {
+m3d.Mat2.prototype = {
 	identity: function( ) {
-		return this.m = lib3dmath.Mat2.IDENITY;
+		return this.m = m3d.Mat2.IDENITY;
 	},
 
 	zero: function( ) {
-		return this.m = lib3dmath.Mat2.ZERO;
+		return this.m = m3d.Mat2.ZERO;
 	},
 
 	determinant: function( ) {
@@ -25,7 +25,7 @@ lib3dmath.Mat2.prototype = {
 	},
 
 	multiplyMatrix: function( m ) {
-		return new lib3dmath.Mat2(
+		return new m3d.Mat2(
 			this.m[ 0 ] * m.m[ 0 ] + this.m[ 2 ] * m.m[ 1 ],
 			this.m[ 1 ] * m.m[ 0 ] + this.m[ 3 ] * m.m[ 1 ],
 			this.m[ 0 ] * m.m[ 2 ] + this.m[ 2 ] * m.m[ 3 ],
@@ -34,14 +34,14 @@ lib3dmath.Mat2.prototype = {
 	},
 
 	multiplyVector: function( v ) {
-		return new lib3dmath.Vec2(
+		return new m3d.Vec2(
 			this.m[ 0 ] * v.x + this.m[ 2 ] * v.y,
 			this.m[ 1 ] * v.x + this.m[ 3 ] * v.y
 		);
 	},
 
 	multiply: function( o ) {
-		if( o instanceof lib3dmath.Vec2 ) {
+		if( o instanceof m3d.Vec2 ) {
 			return this.multiplyVector( o );
 		}
 		else {
@@ -83,29 +83,29 @@ lib3dmath.Mat2.prototype = {
 
 	x_vector: function() {
 		var arr = this.m.slice( 0, 2 );
-		return new lib3dmath.Vec2( arr[0], arr[1] );
+		return new m3d.Vec2( arr[0], arr[1] );
 	},
 
 	y_vector: function() {
 		var arr = this.m.slice( 2, 4 );
-		return new lib3dmath.Vec2( arr[0], arr[1] );
+		return new m3d.Vec2( arr[0], arr[1] );
 	},
 
 	toString: function( ) {
-		return "|" + lib3dmath.format(this.m[0]) + " " + lib3dmath.format(this.m[2]) + "|\n" +
-			   "|" + lib3dmath.format(this.m[1]) + " " + lib3dmath.format(this.m[3]) + "|\n";
+		return "|" + m3d.format(this.m[0]) + " " + m3d.format(this.m[2]) + "|\n" +
+			   "|" + m3d.format(this.m[1]) + " " + m3d.format(this.m[3]) + "|\n";
 	},
 };
 
-lib3dmath.Mat2.IDENTITY = (function() {
-	var i = new lib3dmath.Mat2( 1, 0,
+m3d.Mat2.IDENTITY = (function() {
+	var i = new m3d.Mat2( 1, 0,
 	                  0, 1 );
 	Object.freeze( i );
 	return i;
 }());
 
-lib3dmath.Mat2.ZERO = (function() {
-	var z = new lib3dmath.Mat2( 0, 0,
+m3d.Mat2.ZERO = (function() {
+	var z = new m3d.Mat2( 0, 0,
 	                  0, 0 );
 	Object.freeze( z );
 	return z;

@@ -1,27 +1,27 @@
 /*
  * 2D vector
  */
-lib3dmath.Vec2 = function( x, y ) {
-	if( this instanceof lib3dmath.Vec2 ) {
+m3d.Vec2 = function( x, y ) {
+	if( this instanceof m3d.Vec2 ) {
 		this.x = x || 0;
 		this.y = y || 0;
 	}
 	else {
-		return new lib3dmath.Vec2( x, y );
+		return new m3d.Vec2( x, y );
 	}
 };
 
-lib3dmath.Vec2.prototype = {
+m3d.Vec2.prototype = {
 	add: function( v ) {
-		return new lib3dmath.Vec2( this.x + v.x, this.y + v.y );
+		return new m3d.Vec2( this.x + v.x, this.y + v.y );
 	},
 
 	subtract: function( v ) {
-		return new lib3dmath.Vec2( this.x - v.x, this.y - v.y );
+		return new m3d.Vec2( this.x - v.x, this.y - v.y );
 	},
 
 	multiply: function( s ) {
-		return new lib3dmath.Vec2( this.x * s, this.y * s );
+		return new m3d.Vec2( this.x * s, this.y * s );
 	},
 
 	scale: function( s ) {
@@ -33,7 +33,7 @@ lib3dmath.Vec2.prototype = {
 	},
 
 	crossProduct: function( v ) {
-		return new lib3dmath.Vec2( this.y, -this.x );
+		return new m3d.Vec2( this.y, -this.x );
 	},
 
 	determinant: function( v ) {
@@ -84,9 +84,9 @@ lib3dmath.Vec2.prototype = {
 	},
 
 	lerp: function( a, b, s ) {
-		return new lib3dmath.Vec2(
-			lib3dmath.lerp( s, a.x, b.x ),
-			lib3dmath.lerp( s, a.y, b.y )
+		return new m3d.Vec2(
+			m3d.lerp( s, a.x, b.x ),
+			m3d.lerp( s, a.y, b.y )
 		);
 	},
 
@@ -99,30 +99,30 @@ lib3dmath.Vec2.prototype = {
 	},
 
 	toString: function( ) {
-		return "(" + lib3dmath.format(this.x) + ", " + lib3dmath.format(this.y) + ")";
+		return "(" + m3d.format(this.x) + ", " + m3d.format(this.y) + ")";
 	},
 };
 
-lib3dmath.Vec2.ZERO = (function() {
-	var z = new lib3dmath.Vec2( 0, 0 );
+m3d.Vec2.ZERO = (function() {
+	var z = new m3d.Vec2( 0, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec2.ONE = (function() {
-	var z = new lib3dmath.Vec2( 1, 1 );
+m3d.Vec2.ONE = (function() {
+	var z = new m3d.Vec2( 1, 1 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec2.XUNIT = (function() {
-	var x = new lib3dmath.Vec2( 1, 0 );
+m3d.Vec2.XUNIT = (function() {
+	var x = new m3d.Vec2( 1, 0 );
 	Object.freeze( x );
 	return x;
 }());
 
-lib3dmath.Vec2.YUNIT = (function() {
-	var y = new lib3dmath.Vec2( 0, 1 );
+m3d.Vec2.YUNIT = (function() {
+	var y = new m3d.Vec2( 0, 1 );
 	Object.freeze( y );
 	return y;
 }());

@@ -1,28 +1,28 @@
 /*
  * 3D vector
  */
-lib3dmath.Vec3 = function( x, y, z ) {
-	if( this instanceof lib3dmath.Vec3) {
+m3d.Vec3 = function( x, y, z ) {
+	if( this instanceof m3d.Vec3) {
 		this.x = x || 0;
 		this.y = y || 0;
 		this.z = z || 0;
 	}
 	else {
-		return new lib3dmath.Vec3( x, y, z );
+		return new m3d.Vec3( x, y, z );
 	}
 };
 
-lib3dmath.Vec3.prototype = {
+m3d.Vec3.prototype = {
 	add: function( v ) {
-		return new lib3dmath.Vec3( this.x + v.x, this.y + v.y, this.z + v.z );
+		return new m3d.Vec3( this.x + v.x, this.y + v.y, this.z + v.z );
 	},
 
 	subtract: function( v ) {
-		return new lib3dmath.Vec3( this.x - v.x, this.y - v.y, this.z - v.z );
+		return new m3d.Vec3( this.x - v.x, this.y - v.y, this.z - v.z );
 	},
 
 	multiply: function( s ) {
-		return new lib3dmath.Vec3( this.x * s, this.y * s, this.z * s );
+		return new m3d.Vec3( this.x * s, this.y * s, this.z * s );
 	},
 
 	scale: function( s ) {
@@ -34,7 +34,7 @@ lib3dmath.Vec3.prototype = {
 	},
 
 	crossProduct: function( v ) {
-		return new lib3dmath.Vec3(
+		return new m3d.Vec3(
 			this.y * v.z - this.z * v.y,
 			this.z * v.x - this.x * v.z,
 			this.x * v.y - this.y * v.x
@@ -91,10 +91,10 @@ lib3dmath.Vec3.prototype = {
 	},
 
 	lerp: function( a, b, s ) {
-		return new lib3dmath.Vec3(
-			lib3dmath.lerp( s, a.x, b.x ),
-			lib3dmath.lerp( s, a.y, b.y ),
-			lib3dmath.lerp( s, a.z, b.z )
+		return new m3d.Vec3(
+			m3d.lerp( s, a.x, b.x ),
+			m3d.lerp( s, a.y, b.y ),
+			m3d.lerp( s, a.z, b.z )
 		);
 	},
 
@@ -107,36 +107,36 @@ lib3dmath.Vec3.prototype = {
 	},
 
 	toString: function( ) {
-		return "(" + lib3dmath.format(this.x) + ", " + lib3dmath.format(this.y) + ", " + lib3dmath.format(this.z) + ")";
+		return "(" + m3d.format(this.x) + ", " + m3d.format(this.y) + ", " + m3d.format(this.z) + ")";
 	},
 };
 
-lib3dmath.Vec3.ZERO = (function() {
-	var z = new lib3dmath.Vec3( 0, 0, 0 );
+m3d.Vec3.ZERO = (function() {
+	var z = new m3d.Vec3( 0, 0, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec3.ONE = (function() {
-	var z = new lib3dmath.Vec3( 1, 1, 1 );
+m3d.Vec3.ONE = (function() {
+	var z = new m3d.Vec3( 1, 1, 1 );
 	Object.freeze( z );
 	return z;
 }());
 
-lib3dmath.Vec3.XUNIT = (function() {
-	var x = new lib3dmath.Vec3( 1, 0, 0 );
+m3d.Vec3.XUNIT = (function() {
+	var x = new m3d.Vec3( 1, 0, 0 );
 	Object.freeze( x );
 	return x;
 }());
 
-lib3dmath.Vec3.YUNIT = (function() {
-	var y = new lib3dmath.Vec3( 0, 1, 0 );
+m3d.Vec3.YUNIT = (function() {
+	var y = new m3d.Vec3( 0, 1, 0 );
 	Object.freeze( y );
 	return y;
 }());
 
-lib3dmath.Vec3.ZUNIT = (function() {
-	var z = new lib3dmath.Vec3( 0, 0, 1 );
+m3d.Vec3.ZUNIT = (function() {
+	var z = new m3d.Vec3( 0, 0, 1 );
 	Object.freeze( z );
 	return z;
 }());

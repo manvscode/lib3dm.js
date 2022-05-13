@@ -1,5 +1,5 @@
-# lib3dmath.js
-This is a JavaScript port of lib3dmath for WebGL applications.
+# m3d.js
+This is a JavaScript port of m3d for WebGL applications.
 
 ## Supported Constructs
 * 2D Vectors
@@ -13,21 +13,18 @@ This is a JavaScript port of lib3dmath for WebGL applications.
 * Geometric Tools
 
 ##  Build Instructions
-At this time the build script depends on the bash shell--so no Windows build support.  Eventually a batch file equivalent will be created to support compiling on Windows.
+
+To build, run this command:
+
+   npm run build
 
 ### Unix-like OSs
 Just run ./build.sh
 
-## Donate, if you found this software useful
-
-The development of this software took numerous hours of development and testing.  If you found this useful to you, then please consider making a [donation of bitcoin.](https://bitpay.com/cart/add?itemId=DqFRQjE8NwvKfYktgc85ya)
-
-All donations help cover maintenance costs.
-
 # License
-You may use *lib3dmath.js* in a commercial product as long as the below copyright is retained in the source directory and on all source files.
+You may use *m3d.js* in a commercial product as long as the below copyright is retained in the source directory and on all source files.
 
-    Copyright (C) 2013-2014 by Joseph A. Marrero, http://www.manvscode.com/
+    Copyright (C) 2013-2014 by Joseph A. Marrero, http://joemarrero.com/
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
