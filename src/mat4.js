@@ -33,11 +33,11 @@ m3d.Mat4.fromMatrix = function( m ) {
 };
 
 m3d.Mat4.fromAxisAngle = function( axis, angle ) {
-	var sin_a           = scaler_sin(angle);
-	var cos_a           = scaler_cos(angle);
-	var one_minus_cos_a = 1 - cos_a;
+	let sin_a           = scaler_sin(angle);
+	let cos_a           = scaler_cos(angle);
+	let one_minus_cos_a = 1 - cos_a;
 
-	var ax = axis.clone();
+	let ax = axis.clone();
     ax.normalize( );
 
 	return new m3d.Mat4(
@@ -73,10 +73,10 @@ m3d.Mat4.prototype = {
 	},
 
 	determinant: function() {
-		var d1 = this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]);
-		var d2 = this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]);
-		var d3 = this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
-		var d4 = this.m[4] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]) - this.m[5] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]) + this.m[6] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
+		let d1 = this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]);
+		let d2 = this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]);
+		let d3 = this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
+		let d4 = this.m[4] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]) - this.m[5] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]) + this.m[6] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
 		return this.m[0]*d1 - this.m[1]*d2 + this.m[2]*d3 - this.m[3]*d4;
 	},
 
@@ -144,12 +144,12 @@ m3d.Mat4.prototype = {
 	},
 
 	transpose: function() {
-		var tmp1 = this.m[ 1];
-		var tmp2 = this.m[ 2];
-		var tmp3 = this.m[ 3];
-		var tmp4 = this.m[ 6];
-		var tmp5 = this.m[ 7];
-		var tmp6 = this.m[11];
+		let tmp1 = this.m[ 1];
+		let tmp2 = this.m[ 2];
+		let tmp3 = this.m[ 3];
+		let tmp4 = this.m[ 6];
+		let tmp5 = this.m[ 7];
+		let tmp6 = this.m[11];
 
 		this.m[ 1] = this.m[ 4];
 		this.m[ 2] = this.m[ 8];
@@ -167,21 +167,21 @@ m3d.Mat4.prototype = {
 	},
 
 	adjoint: function() {
-		var cofactor_matrix = this.cofactor( );
+		let cofactor_matrix = this.cofactor( );
 		cofactor_matrix.transpose( );
 		this.m = cofactor_matrix.m;
 	},
 
 	invert: function() {
-		var d1 = this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]);
-		var d2 = this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]);
-		var d3 = this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
-		var d4 = this.m[4] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]) - this.m[5] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]) + this.m[6] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
-		var det = this.m[0]*d1 - this.m[1]*d2 + this.m[2]*d3 - this.m[3]*d4;
+		let d1 = this.m[5] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) + this.m[7] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]);
+		let d2 = this.m[4] * (this.m[10] * this.m[15] - this.m[14] * this.m[11]) - this.m[6] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]);
+		let d3 = this.m[4] * (this.m[9] * this.m[15] - this.m[13] * this.m[11]) - this.m[5] * (this.m[8] * this.m[15] - this.m[12] * this.m[11]) + this.m[7] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
+		let d4 = this.m[4] * (this.m[9] * this.m[14] - this.m[13] * this.m[10]) - this.m[5] * (this.m[8] * this.m[14] - this.m[12] * this.m[10]) + this.m[6] * (this.m[8] * this.m[13] - this.m[12] * this.m[9]);
+		let det = this.m[0]*d1 - this.m[1]*d2 + this.m[2]*d3 - this.m[3]*d4;
 
 		if( Math.abs(det) > Number.EPSILON ) // testing if not zero
 		{
-			var cofactor_matrix = new m3d.Mat4(
+			let cofactor_matrix = new m3d.Mat4(
 				+(d1),
 				-(d2),
 				+(d3),
@@ -227,22 +227,22 @@ m3d.Mat4.prototype = {
 	},
 
 	x_vector: function() {
-		var arr = this.m.slice( 0, 4 );
+		let arr = this.m.slice( 0, 4 );
 		return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 	},
 
 	y_vector: function() {
-		var arr = this.m.slice( 4, 8 );
+		let arr = this.m.slice( 4, 8 );
 		return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 	},
 
 	z_vector: function() {
-		var arr = this.m.slice( 8, 12 );
+		let arr = this.m.slice( 8, 12 );
 		return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 	},
 
 	w_vector: function() {
-		var arr = this.m.slice( 12, 16 );
+		let arr = this.m.slice( 12, 16 );
 		return new Vec4( arr[0], arr[1], arr[2], arr[3] );
 	},
 
@@ -255,7 +255,7 @@ m3d.Mat4.prototype = {
 };
 
 m3d.Mat4.IDENTITY = (function() {
-	var i = new m3d.Mat4( 1, 0, 0, 0,
+	let i = new m3d.Mat4( 1, 0, 0, 0,
 				      0, 1, 0, 0,
 				      0, 0, 1, 0,
 				      0, 0, 0, 1 );
@@ -264,7 +264,7 @@ m3d.Mat4.IDENTITY = (function() {
 }());
 
 m3d.Mat4.ZERO = (function() {
-	var z = new m3d.Mat4( 0, 0, 0, 0,
+	let z = new m3d.Mat4( 0, 0, 0, 0,
 	                  0, 0, 0, 0,
 	                  0, 0, 0, 0,
 	                  0, 0, 0, 0 );

@@ -14,8 +14,8 @@ m3d.transforms = {
 	},
 
 	rotateX: function( a ) {
-		var s = Math.sin( a );
-		var c = Math.cos( a );
+		let s = Math.sin( a );
+		let c = Math.cos( a );
 
 		return new m3d.Mat4(
 			1.0, 0.0, 0.0, 0.0,
@@ -26,8 +26,8 @@ m3d.transforms = {
 	},
 
 	rotateY: function( a ) {
-		var s = Math.sin( a );
-		var c = Math.cos( a );
+		let s = Math.sin( a );
+		let c = Math.cos( a );
 
 		return new m3d.Mat4(
 			  c, 0.0,   s, 0.0,
@@ -38,8 +38,8 @@ m3d.transforms = {
 	},
 
 	rotateZ: function( a ) {
-		var s = Math.sin( a );
-		var c = Math.cos( a );
+		let s = Math.sin( a );
+		let c = Math.cos( a );
 
 		return new m3d.Mat4(
 			  c,  -s, 0.0, 0.0,
@@ -50,9 +50,9 @@ m3d.transforms = {
 	},
 
 	rotateFromVectorToVector: function( s, t ) {
-		var v = s.crossProduct( t );
-		var e = s.dotProduct( t );
-		var h = 1 / (1 + e);
+		let v = s.crossProduct( t );
+		let e = s.dotProduct( t );
+		let h = 1 / (1 + e);
 
 		return new m3d.Mat4(
 			  e + h * v.x * v.x,   h * v.x * v.y + v.z,   h * v.x * v.z - v.y,  0,
@@ -92,12 +92,12 @@ m3d.transforms = {
 
 	/* Beware of gimbal lock when any angle is set to +/- HALF_PI */
 	eulerTransform: function( h, p, r ) {
-		var sin_h = Math.sin( h );
-		var cos_h = Math.cos( h );
-		var sin_p = Math.sin( p );
-		var cos_p = Math.cos( p );
-		var sin_r = Math.sin( r );
-		var cos_r = Math.cos( r );
+		let sin_h = Math.sin( h );
+		let cos_h = Math.cos( h );
+		let sin_p = Math.sin( p );
+		let cos_p = Math.cos( p );
+		let sin_r = Math.sin( r );
+		let cos_r = Math.cos( r );
 
 		return new m3d.Mat4(
 			cos_r * cos_h - sin_r * sin_p * sin_h,   sin_r * cos_h + cos_r * sin_p * sin_h,   -cos_p * sin_h,   0,
@@ -180,13 +180,13 @@ m3d.transforms = {
 	},
 
 	lookAt: function( eye, target, up ) {
-		var z = new m3d.Vec3( target.x - eye.x, target.y - eye.y, target.z - eye.z );
+		let z = new m3d.Vec3( target.x - eye.x, target.y - eye.y, target.z - eye.z );
 		z.normalize( );
 
-		var x = z.crossProduct( up );
+		let x = z.crossProduct( up );
 		x.normalize( );
 
-		var y = x.crossProduct( z );
+		let y = x.crossProduct( z );
 		y.normalize( );
 
 		return new m3d.Mat4(
@@ -213,12 +213,12 @@ m3d.transforms.projections = {
 	},
 
 	frustum: function( left, right, bottom, top, near, far ) {
-		var A = 2.0 * near / (right - left);
-		var B = (right + left) / (right - left);
-		var C = 2.0 * near / (top - bottom);
-		var D = (top + bottom) / (top - bottom);
-		var E = -(far + near) / (far - near);
-		var F = -(2.0 * far * near) / (far - near);
+		let A = 2.0 * near / (right - left);
+		let B = (right + left) / (right - left);
+		let C = 2.0 * near / (top - bottom);
+		let D = (top + bottom) / (top - bottom);
+		let E = -(far + near) / (far - near);
+		let F = -(2.0 * far * near) / (far - near);
 
 		return new m3d.Mat4(
 			  A,  0.0,    B,  0.0,
@@ -229,9 +229,9 @@ m3d.transforms.projections = {
 	},
 
 	perspective: function( fov, aspect, near, far ) {
-		var A = 1.0 / Math.tan(fov * 0.5);
-		var B = -far / (far - near);
-		var C = -(far * near)/ (far - near);
+		let A = 1.0 / Math.tan(fov * 0.5);
+		let B = -far / (far - near);
+		let C = -(far * near)/ (far - near);
 
 		return new m3d.Mat4(
 			A/aspect,  0.0,  0.0,  0.0,

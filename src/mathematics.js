@@ -1,6 +1,6 @@
 "use strict";
-var m3d = (function() {
-	var M = {
+const m3d = (function() {
+	const M = {
 		toRadians: function(degrees) { return degrees * this.RADIANS_PER_DEGREE; },
 		toDegrees: function(radians) { return radians * this.DEGREES_PER_RANDIAN; },
 		integerMax: function(x, y) { return (x) ^ (((x) ^ (y)) & -((x) < (y))); },

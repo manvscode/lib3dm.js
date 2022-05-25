@@ -13,18 +13,18 @@ This is a JavaScript port of m3d for WebGL applications.
 * Geometric Tools
 
 ##  Build Instructions
+First, install the dependencies:
+
+    npm install
 
 To build, run this command:
 
-   npm run build
-
-### Unix-like OSs
-Just run ./build.sh
+    npm run build
 
 # License
 You may use *m3d.js* in a commercial product as long as the below copyright is retained in the source directory and on all source files.
 
-    Copyright (C) 2013-2014 by Joseph A. Marrero, http://joemarrero.com/
+    Copyright (C) 2013-2014 by Joseph A. Marrero, https://joemarrero.com/
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

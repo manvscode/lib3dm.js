@@ -63,15 +63,15 @@ m3d.Vec4.prototype = {
 	},
 
 	angle: function( v ) {
-		var dot_product = this.dotProduct( v );
-		var a_length    = this.magnitude( );
-		var b_length    = v.magnitude( );
+		let dot_product = this.dotProduct( v );
+		let a_length    = this.magnitude( );
+		let b_length    = v.magnitude( );
 
 		return Math.acos( dot_product / ( a_length * b_length ) );
 	},
 
 	normalize: function( ) {
-		var inverse_length = 1.0 / this.magnitude();
+		let inverse_length = 1.0 / this.magnitude();
 		this.x *= inverse_length;
 		this.y *= inverse_length;
 		this.z *= inverse_length;
@@ -80,7 +80,7 @@ m3d.Vec4.prototype = {
 	},
 
 	isNormalized: function( ) {
-		var length = this.magnitude();
+		let length = this.magnitude();
 		return (Math.abs(length - 1.0) < Number.EPSILON);
 	},
 
@@ -123,37 +123,37 @@ m3d.Vec4.prototype = {
 };
 
 m3d.Vec4.ZERO = (function() {
-	var z = new m3d.Vec4( 0, 0, 0, 0 );
+	let z = new m3d.Vec4( 0, 0, 0, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
 m3d.Vec4.ONE = (function() {
-	var z = new m3d.Vec4( 1, 1, 1, 1 );
+	let z = new m3d.Vec4( 1, 1, 1, 1 );
 	Object.freeze( z );
 	return z;
 }());
 
 m3d.Vec4.XUNIT = (function() {
-	var x = new m3d.Vec4( 1, 0, 0, 0 );
+	let x = new m3d.Vec4( 1, 0, 0, 0 );
 	Object.freeze( x );
 	return x;
 }());
 
 m3d.Vec4.YUNIT = (function() {
-	var y = new m3d.Vec4( 0, 1, 0, 0 );
+	let y = new m3d.Vec4( 0, 1, 0, 0 );
 	Object.freeze( y );
 	return y;
 }());
 
 m3d.Vec4.ZUNIT = (function() {
-	var z = new m3d.Vec4( 0, 0, 1, 0 );
+	let z = new m3d.Vec4( 0, 0, 1, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
 m3d.Vec4.WUNIT = (function() {
-	var w = new m3d.Vec4( 0, 0, 0, 1 );
+	let w = new m3d.Vec4( 0, 0, 0, 1 );
 	Object.freeze( w );
 	return w;
 }());

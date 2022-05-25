@@ -14,7 +14,7 @@ m3d.Quat = function( x, y, z, w ) {
 };
 
 m3d.Quat.fromAxisAngle = function( axis, angle ) {
-	var q = new m3d.Quat(
+	let q = new m3d.Quat(
 		Math.cos( angle / 2.0 ),
 		axis.x * Math.sin( angle / 2.0 ),
 		axis.y * Math.sin( angle / 2.0 ),
@@ -43,11 +43,11 @@ m3d.Quat.fromMatrix = function( m ) {
 };
 
 m3d.Quat.fromMat3 = function( m ) {
-	var trace = m.m[0] + m.m[4] + m.m[8]; /* add the diagonal values */
+	let trace = m.m[0] + m.m[4] + m.m[8]; /* add the diagonal values */
 
 	if( trace > 0.0 )
 	{
-		var s = 0.5 / Math.sqrt( trace );
+		let s = 0.5 / Math.sqrt( trace );
 
 		return new m3d.Quat(
 			0.25 / s,
@@ -58,11 +58,11 @@ m3d.Quat.fromMat3 = function( m ) {
 	}
 	else
 	{
-		var max_diagonal_elem = maxf( m.m[0], maxf( m.m[4], m.m[8] ) );
+		let max_diagonal_elem = maxf( m.m[0], maxf( m.m[4], m.m[8] ) );
 
 		if( Math.abs(m.m[0] - max_diagonal_elem) < Number.EPSILON )
 		{
-			var s = Math.sqrt( 1.0 + m.m[0] - m.m[4] - m.m[8] ) * 2.0;
+			let s = Math.sqrt( 1.0 + m.m[0] - m.m[4] - m.m[8] ) * 2.0;
 
 			return new m3d.Quat(
 				0.5 / s,
@@ -73,7 +73,7 @@ m3d.Quat.fromMat3 = function( m ) {
 		}
 		else if( Math.abs(m.m[4] - max_diagonal_elem) < Number.EPSILON )
 		{
-			var s = Math.sqrt( 1.0 + m.m[4] - m.m[0] - m.m[8] ) * 2.0;
+			let s = Math.sqrt( 1.0 + m.m[4] - m.m[0] - m.m[8] ) * 2.0;
 
 			return new m3d.Quat(
 				(m.m[1] + m.m[3]) / s,
@@ -84,7 +84,7 @@ m3d.Quat.fromMat3 = function( m ) {
 		}
 		else
 		{
-			var s = Math.sqrt( 1.0 + m.m[8] - m.m[0] - m.m[4] ) * 2.0;
+			let s = Math.sqrt( 1.0 + m.m[8] - m.m[0] - m.m[4] ) * 2.0;
 
 			return new m3d.Quat(
 				(m.m[2] + m.m[6]) / s,
@@ -97,11 +97,11 @@ m3d.Quat.fromMat3 = function( m ) {
 };
 
 m3d.Quat.fromMat4 = function( m ) {
-	var trace = m.m[0] + m.m[5] + m.m[10] + 1; /* add the diagonal values */
+	let trace = m.m[0] + m.m[5] + m.m[10] + 1; /* add the diagonal values */
 
 	if( trace > 0.0 )
 	{
-		var s = 0.5 / Math.sqrt( trace );
+		let s = 0.5 / Math.sqrt( trace );
 
 		return new m3d.Quat(
 			0.25 / s,
@@ -112,11 +112,11 @@ m3d.Quat.fromMat4 = function( m ) {
 	}
 	else
 	{
-		var max_diagonal_elem = maxf( m.m[0], maxf( m.m[5], m.m[10] ) );
+		let max_diagonal_elem = maxf( m.m[0], maxf( m.m[5], m.m[10] ) );
 
 		if( Math.abs(m.m[0] - max_diagonal_elem) < Number.EPSILON )
 		{
-			var s = Math.sqrt( 1.0 + m.m[0] - m.m[5] - m.m[10] ) * 2.0;
+			let s = Math.sqrt( 1.0 + m.m[0] - m.m[5] - m.m[10] ) * 2.0;
 
 			return new m3d.Quat(
 				0.5 / s,
@@ -127,7 +127,7 @@ m3d.Quat.fromMat4 = function( m ) {
 		}
 		else if( Math.abs(m.m[5] - max_diagonal_elem) < Number.EPSILON )
 		{
-			var s = Math.sqrt( 1.0 + m.m[5] - m.m[0] - m.m[10] ) * 2.0;
+			let s = Math.sqrt( 1.0 + m.m[5] - m.m[0] - m.m[10] ) * 2.0;
 
 			return new m3d.Quat(
 				(m.m[1] + m.m[4]) / s,
@@ -138,7 +138,7 @@ m3d.Quat.fromMat4 = function( m ) {
 		}
 		else
 		{
-			var s = Math.sqrt( 1.0 + m.m[10] - m.m[0] - m.m[5] ) * 2.0;
+			let s = Math.sqrt( 1.0 + m.m[10] - m.m[0] - m.m[5] ) * 2.0;
 
 			return new m3d.Quat(
 				(m.m[2] + m.m[8]) / s,
@@ -156,7 +156,7 @@ m3d.Quat.prototype = {
 	},
 
 	normalize: function() {
-		var magnitude = this.magnitude( );
+		let magnitude = this.magnitude( );
 		if( magnitude > 0.0 ) {
 			this.w /= magnitude;
 			this.x /= magnitude;
@@ -204,11 +204,11 @@ m3d.Quat.prototype = {
 	},
 
 	rotate: function( v ) {
-		var q_v = m3d.Quat.fromVector( v );
+		let q_v = m3d.Quat.fromVector( v );
 
-		var q_inverse = this.conjugate( );
-		var q_v_inverse = q_v.multiply( q_inverse );
-		var q_result = q.multiply( q_v_inverse );
+		let q_inverse = this.conjugate( );
+		let q_v_inverse = q_v.multiply( q_inverse );
+		let q_result = q.multiply( q_v_inverse );
 
 		return new Vec4( q_result.x, q_result.y, q_result.z, 0.0 );
 	},
@@ -236,7 +236,7 @@ m3d.Quat.prototype = {
 
 	extractAxisAndAngle: function( axis, angle ) {
 		angle = Math.acos( this.w ) * 2.0;
-		var sin_angle = Math.sin( 0.5 * angle );
+		let sin_angle = Math.sin( 0.5 * angle );
 
 		axis.x = this.x / sin_angle;
 		axis.y = this.y / sin_angle;

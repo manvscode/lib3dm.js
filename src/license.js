@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 by Joseph A. Marrero, http://www.manvscode.com/
+/* Copyright (C) 2013 by Joseph A. Marrero, https://joemarrero.com/
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * This software is a port of Joe Marrero's m3d library. Joe ported this
  * over for WebGL applications that need a decoupled math library for 3D graphics.
  *
- * The original C code is maintained at http://bitbucket.org/manvscode/m3d
+ * The original C code is maintained at https://github.com/manvscode/libm3d
  *
- * The Javascript port is maintained at http://bitbucket.org/manvscode/m3d.js
+ * The Javascript port is maintained at https://github.com/manvscode/m3d.js
  */

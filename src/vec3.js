@@ -54,15 +54,15 @@ m3d.Vec3.prototype = {
 	},
 
 	angle: function( v ) {
-		var dot_product = this.dotProduct( v );
-		var a_length    = this.magnitude( );
-		var b_length    = v.magnitude( );
+		let dot_product = this.dotProduct( v );
+		let a_length    = this.magnitude( );
+		let b_length    = v.magnitude( );
 
 		return Math.acos( dot_product / ( a_length * b_length ) );
 	},
 
 	normalize: function( ) {
-		var length = this.magnitude();
+		let length = this.magnitude();
 		if( length > 0.0 ) {
 			this.x /= length;
 			this.y /= length;
@@ -72,7 +72,7 @@ m3d.Vec3.prototype = {
 	},
 
 	isNormalized: function( ) {
-		var length = this.magnitude();
+		let length = this.magnitude();
 		return (Math.abs(length - 1.0) < Number.EPSILON);
 	},
 
@@ -112,31 +112,31 @@ m3d.Vec3.prototype = {
 };
 
 m3d.Vec3.ZERO = (function() {
-	var z = new m3d.Vec3( 0, 0, 0 );
+	let z = new m3d.Vec3( 0, 0, 0 );
 	Object.freeze( z );
 	return z;
 }());
 
 m3d.Vec3.ONE = (function() {
-	var z = new m3d.Vec3( 1, 1, 1 );
+	let z = new m3d.Vec3( 1, 1, 1 );
 	Object.freeze( z );
 	return z;
 }());
 
 m3d.Vec3.XUNIT = (function() {
-	var x = new m3d.Vec3( 1, 0, 0 );
+	let x = new m3d.Vec3( 1, 0, 0 );
 	Object.freeze( x );
 	return x;
 }());
 
 m3d.Vec3.YUNIT = (function() {
-	var y = new m3d.Vec3( 0, 1, 0 );
+	let y = new m3d.Vec3( 0, 1, 0 );
 	Object.freeze( y );
 	return y;
 }());
 
 m3d.Vec3.ZUNIT = (function() {
-	var z = new m3d.Vec3( 0, 0, 1 );
+	let z = new m3d.Vec3( 0, 0, 1 );
 	Object.freeze( z );
 	return z;
 }());

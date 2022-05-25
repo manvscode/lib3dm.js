@@ -31,11 +31,11 @@ m3d.Mat3.fromMatrix = function( m ) {
 };
 
 m3d.Mat3.fromAxisAngle = function( axis, angle ) {
-	var sin_a           = Math.sin(angle);
-	var cos_a           = Math.cos(angle);
-	var one_minus_cos_a = 1 - cos_a;
+	let sin_a           = Math.sin(angle);
+	let cos_a           = Math.cos(angle);
+	let one_minus_cos_a = 1 - cos_a;
 
-    var ax = axis.clone();
+    let ax = axis.clone();
     ax.normalize( );
 
 	return new m3d.Mat3(
@@ -121,9 +121,9 @@ m3d.Mat3.prototype = {
 	},
 
 	transpose: function() {
-		var tmp1 = this.m[ 1 ];
-		var tmp2 = this.m[ 2 ];
-		var tmp3 = this.m[ 5 ];
+		let tmp1 = this.m[ 1 ];
+		let tmp2 = this.m[ 2 ];
+		let tmp3 = this.m[ 5 ];
 
 		this.m[ 1 ] = this.m[ 3 ];
 		this.m[ 2 ] = this.m[ 6 ];
@@ -135,13 +135,13 @@ m3d.Mat3.prototype = {
 	},
 
 	adjoint: function() {
-		var cofactor_matrix = this.cofactor();
+		let cofactor_matrix = this.cofactor();
 		cofactor_matrix.transpose();
 		this.m = cofactor_matrix.m;
 	},
 
 	invert: function() {
-		var det = this.determinant();
+		let det = this.determinant();
 
 		if( Math.abs(det) > Number.EPSILON ) // testing if not zero
 		{
@@ -164,17 +164,17 @@ m3d.Mat3.prototype = {
 	},
 
 	x_vector: function() {
-		var arr = this.m.slice( 0, 4 );
+		let arr = this.m.slice( 0, 4 );
 		return new m3d.Vec3( arr[0], arr[1], arr[2] );
 	},
 
 	y_vector: function() {
-		var arr = this.m.slice( 3, 6 );
+		let arr = this.m.slice( 3, 6 );
 		return new m3d.Vec3( arr[0], arr[1], arr[2] );
 	},
 
 	z_vector: function() {
-		var arr = this.m.slice( 6, 9 );
+		let arr = this.m.slice( 6, 9 );
 		return new m3d.Vec3( arr[0], arr[1], arr[2] );
 	},
 
@@ -186,7 +186,7 @@ m3d.Mat3.prototype = {
 };
 
 m3d.Mat3.IDENTITY = (function() {
-	var i = new m3d.Mat3( 1, 0, 0,
+	let i = new m3d.Mat3( 1, 0, 0,
 	                  0, 1, 0,
 	                  0, 0, 1 );
 	Object.freeze( i );
@@ -194,7 +194,7 @@ m3d.Mat3.IDENTITY = (function() {
 }());
 
 m3d.Mat3.ZERO = (function() {
-	var z = new m3d.Mat3( 0, 0, 0,
+	let z = new m3d.Mat3( 0, 0, 0,
 	                  0, 0, 0,
 	                  0, 0, 0 );
 	Object.freeze( z );

@@ -50,12 +50,12 @@ m3d.Mat2.prototype = {
 	},
 
 	invert: function( ) {
-		var det = this.determinant( );
+		let det = this.determinant( );
 
 		if( det > Number.EPSILON )
 		{
 			{
-				var tmp = this.m[ 0 ];
+				let tmp = this.m[ 0 ];
 				this.m[ 0 ] = this.m[ 3 ];
 				this.m[ 3 ] = tmp;
 
@@ -76,18 +76,18 @@ m3d.Mat2.prototype = {
 	},
 
 	transpose: function( ) {
-		var tmp = this.m[ 1 ];
+		let tmp = this.m[ 1 ];
 		this.m[ 1 ] = this.m[ 2 ];
 		this.m[ 2 ] = tmp;
 	},
 
 	x_vector: function() {
-		var arr = this.m.slice( 0, 2 );
+		let arr = this.m.slice( 0, 2 );
 		return new m3d.Vec2( arr[0], arr[1] );
 	},
 
 	y_vector: function() {
-		var arr = this.m.slice( 2, 4 );
+		let arr = this.m.slice( 2, 4 );
 		return new m3d.Vec2( arr[0], arr[1] );
 	},
 
@@ -98,14 +98,14 @@ m3d.Mat2.prototype = {
 };
 
 m3d.Mat2.IDENTITY = (function() {
-	var i = new m3d.Mat2( 1, 0,
+	let i = new m3d.Mat2( 1, 0,
 	                  0, 1 );
 	Object.freeze( i );
 	return i;
 }());
 
 m3d.Mat2.ZERO = (function() {
-	var z = new m3d.Mat2( 0, 0,
+	let z = new m3d.Mat2( 0, 0,
 	                  0, 0 );
 	Object.freeze( z );
 	return z;
